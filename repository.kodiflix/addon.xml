@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addon id="repository.kodiflix" name="Kodiflix Repository" version="1.0.0" provider-name="Jack Davison">
+	<extension point="xbmc.addon.repository" name="Kodiflix Repository">
+		<info compressed="false">https://jlrd221108.github.io/kodiflix-repo/addons.xml</info>
+		<checksum>https://jlrd221108.github.io/kodiflix-repo/addons.xml.md5</checksum>
+		<datadir zip="true">https://jlrd221108.github.io/kodiflix-repo/zips/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en_GB">Kodiflix add-on repository</summary>
+		<description lang="en_GB">Repository for the Kodiflix skin and helper add-on.</description>
+		<platform>all</platform>
+	</extension>
+</addon>
