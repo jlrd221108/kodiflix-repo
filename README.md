@@ -16,4 +16,4 @@ Kodi should show:
 repository.kodiflix-1.0.0.zip
 ```
 
-Install that zip first. Then install `Kodiflix Helper`, then `Kodiflix` from the repository.
+Install that zip first. Then install `Kodiflix`. Then, `Kodiflix Helper` will be installed automatically.
