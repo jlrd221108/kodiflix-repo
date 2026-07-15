@@ -1,0 +1,10 @@
+repo/zips/addons.xml -text
+repo/zips/addons.xml.md5 -text
+*.zip binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.xbt binary
+*.ttf binary
+*.otf binary
