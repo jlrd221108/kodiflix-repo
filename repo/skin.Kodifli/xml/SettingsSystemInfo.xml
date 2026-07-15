@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">95</defaultcontrol>
+	<controls>
+		<include>DefaultBackground</include>
+		<control type="image">
+			<visible>Skin.HasSetting(KodiflixSettingsPopupStyle)</visible>
+			<depth>DepthBackground</depth>
+			<include>FullScreenDimensions</include>
+			<aspectratio>scale</aspectratio>
+			<texture>$VAR[KodiflixSettingsBackgroundVar]</texture>
+		</control>
+		<control type="multiimage">
+			<depth>DepthBackground</depth>
+			<include>FullScreenDimensions</include>
+			<aspectratio>scale</aspectratio>
+			<imagepath background="true" colordiffuse="FF555555">$INFO[Skin.String(HomeFanart.path)]settings$INFO[Skin.String(HomeFanart.ext)]</imagepath>
+			<visible>!Player.HasMedia + !String.IsEmpty(Skin.String(HomeFanart.path))</visible>
+		</control>
+		<control type="group">
+			<visible>Skin.HasSetting(KodiflixSettingsPopupStyle)</visible>
+			<control type="image">
+				<left>60</left>
+				<top>180</top>
+				<width>1800</width>
+				<height>720</height>
+				<texture border="32" colordiffuse="700F1415">kodiflix/settings-panel-rounded.png</texture>
+			</control>
+			<control type="image">
+				<left>570</left>
+				<top>225</top>
+				<width>1</width>
+				<height>630</height>
+				<texture colordiffuse="70FFFFFF">colors/white.png</texture>
+			</control>
+		</control>
+		<control type="group">
+			<left>40</left>
+			<top>133</top>
+			<animation effect="slide" end="110,92" time="0" condition="Skin.HasSetting(KodiflixSettingsPopupStyle)">Conditional</animation>
+			<include>Kodiflix_SettingsTextFade</include>
+			<control type="grouplist">
+				<left>460</left>
+				<top>30</top>
+				<height>630</height>
+				<orientation>vertical</orientation>
+				<control type="label" id="2">
+					<height>47</height>
+					<width>1240</width>
+					<font>Mono26</font>
+				</control>
+				<control type="label" id="3">
+					<height>47</height>
+					<width>1240</width>
+					<font>Mono26</font>
+				</control>
+				<control type="label" id="4">
+					<height>47</height>
+					<width>1240</width>
+					<font>Mono26</font>
+				</control>
+				<control type="label" id="5">
+					<height>47</height>
+					<width>1240</width>
+					<font>Mono26</font>
+				</control>
+				<control type="label" id="6">
+					<height>47</height>
+					<width>1240</width>
+					<font>Mono26</font>
+				</control>
+				<control type="label" id="7">
+					<height>47</height>
+					<width>1240</width>
+					<font>Mono26</font>
+				</control>
+				<control type="label" id="8">
+					<height>47</height>
+					<width>1240</width>
+					<font>Mono26</font>
+				</control>
+				<control type="label" id="9">
+					<height>47</height>
+					<width>1240</width>
+					<font>Mono26</font>
+				</control>
+				<control type="label" id="10">
+					<height>47</height>
+					<width>1240</width>
+					<font>Mono26</font>
+				</control>
+				<control type="label" id="11">
+					<height>47</height>
+					<width>1240</width>
+					<font>Mono26</font>
+				</control>
+				<control type="label" id="12">
+					<height>47</height>
+					<width>1240</width>
+					<font>Mono26</font>
+				</control>
+				<control type="label" id="13">
+					<height>47</height>
+					<width>1240</width>
+					<font>Mono26</font>
+				</control>
+			</control>
+			<control type="textbox" id="30">
+				<left>460</left>
+				<width>1200</width>
+				<top>30</top>
+				<height>520</height>
+				<pagecontrol>60</pagecontrol>
+				<autoscroll delay="5000" repeat="7500" time="5000">!Control.HasFocus(60)</autoscroll>
+			</control>
+			<control type="scrollbar" id="60">
+				<enable>!Skin.HasSetting(KodiflixSettingsPopupStyle)</enable>
+				<right>0</right>
+				<top>0</top>
+				<width>12</width>
+				<height>630</height>
+				<orientation>vertical</orientation>
+				<texturesliderbackground />
+				<animation effect="slide" end="6,0" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(60)">conditional</animation>
+				<onleft>9000</onleft>
+				<onright>9000</onright>
+				<visible>Control.IsVisible(30) + !Skin.HasSetting(KodiflixSettingsPopupStyle)</visible>
+				<animation effect="fade" start="0" end="100" time="200" delay="300">Visible</animation>
+				<animation effect="fade" start="100" end="0" time="200">Hidden</animation>
+			</control>
+			<control type="image">
+				<left>380</left>
+				<top>-3</top>
+				<right>0</right>
+				<height>3</height>
+				<texture colordiffuse="button_focus" border="2">dialogs/separator-grey.png</texture>
+				<visible>!Skin.HasSetting(KodiflixSettingsPopupStyle)</visible>
+			</control>
+			<control type="group" id="102">
+				<description>System Info page that shows a QR code linking to https://kodi.tv/donate/</description>
+				<left>460</left>
+				<right>50</right>
+				<top>30</top>
+				<bottom>30</bottom>
+				<control type="textbox">
+					<height>110</height>
+					<label>$LOCALIZE[12397]</label>
+				</control>
+				<control type="multiimage" id="103">
+					<top>110</top>
+					<height>620</height>
+					<imagepath>special://xbmc/media/qr/kodilove/</imagepath>
+					<aspectratio>keep</aspectratio>
+					<timeperimage>5000</timeperimage>
+					<fadetime>1000</fadetime>
+					<randomize>false</randomize>
+				</control>
+				<control type="label">
+					<top>748</top>
+					<align>center</align>
+					<label>$LOCALIZE[12398]</label>
+				</control>
+			</control>
+		</control>
+		<control type="group">
+			<left>0</left>
+			<top>0</top>
+			<depth>DepthContentPanel</depth>
+			<animation effect="slide" end="90,95" time="0" condition="Skin.HasSetting(KodiflixSettingsPopupStyle)">Conditional</animation>
+			<include>Kodiflix_SettingsTextFade</include>
+			<include content="ContentPanel" condition="!Skin.HasSetting(KodiflixSettingsPopupStyle)">
+				<param name="width" value="480" />
+			</include>
+			<control type="grouplist" id="9000">
+				<left>0</left>
+				<top>130</top>
+				<width>420</width>
+				<height>630</height>
+				<onup>9000</onup>
+				<ondown>9000</ondown>
+				<onright>noop</onright>
+				<control type="button" id="95">
+					<description>Button Summary Values</description>
+					<include content="DefaultSettingButton">
+						<param name="height" value="85" />
+					</include>
+					<width>420</width>
+					<label>$LOCALIZE[20037]</label>
+				</control>
+				<control type="button" id="94">
+					<description>Button Storage</description>
+					<include content="DefaultSettingButton">
+						<param name="height" value="85" />
+					</include>
+					<width>420</width>
+					<label>$LOCALIZE[13277]</label>
+				</control>
+				<control type="button" id="96">
+					<description>Button Network</description>
+					<include content="DefaultSettingButton">
+						<param name="height" value="85" />
+					</include>
+					<width>420</width>
+					<label>$LOCALIZE[13279]</label>
+				</control>
+				<control type="button" id="97">
+					<description>Button Video</description>
+					<include content="DefaultSettingButton">
+						<param name="height" value="85" />
+					</include>
+					<width>420</width>
+					<label>$LOCALIZE[13280]</label>
+				</control>
+				<control type="button" id="98">
+					<description>Button Hardware</description>
+					<include content="DefaultSettingButton">
+						<param name="height" value="85" />
+					</include>
+					<width>420</width>
+					<label>$LOCALIZE[13281]</label>
+				</control>
+				<control type="button" id="99">
+					<description>Button PVR</description>
+					<include content="DefaultSettingButton">
+						<param name="height" value="85" />
+					</include>
+					<width>420</width>
+					<label>$LOCALIZE[19191]</label>
+				</control>
+			</control>
+		</control>
+		<include content="TopBar" condition="!Skin.HasSetting(KodiflixSettingsPopupStyle)">
+			<param name="breadcrumbs_label" value="$LOCALIZE[130]" />
+		</include>
+		<include condition="!Skin.HasSetting(KodiflixSettingsPopupStyle)">BottomBar</include>
+		<control type="group" id="104">
+			<visible>!Skin.HasSetting(KodiflixSettingsPopupStyle) | Control.HasFocus(98)</visible>
+			<bottom>0</bottom>
+			<left>40</left>
+			<height>370</height>
+			<animation effect="slide" end="110,-350" time="0" condition="Skin.HasSetting(KodiflixSettingsPopupStyle)">Conditional</animation>
+			<include>Kodiflix_SettingsTextFade</include>
+			<control type="image">
+				<left>380</left>
+				<top>30</top>
+				<right>0</right>
+				<height>3</height>
+				<texture colordiffuse="button_focus" border="2">dialogs/separator-grey.png</texture>
+				<visible>!Skin.HasSetting(KodiflixSettingsPopupStyle)</visible>
+			</control>
+			<control type="grouplist">
+				<left>460</left>
+				<orientation>vertical</orientation>
+				<control type="label">
+					<description>Memory Text</description>
+					<width>auto</width>
+					<height>80</height>
+					<label>$LOCALIZE[31030]: $INFO[system.memory(used)] [B]/[/B] $INFO[system.memory(total)] [B]-[/B] $INFO[system.memory(used.percent)]</label>
+					<aligny>top</aligny>
+					<textoffsety>40</textoffsety>
+					<shadowcolor>black</shadowcolor>
+					<font>font12</font>
+				</control>
+				<control type="progress">
+					<description>Memory BAR</description>
+					<width>730</width>
+					<height>16</height>
+					<info>system.memory(used)</info>
+				</control>
+				<control type="label">
+					<description>CPU Text</description>
+					<width>auto</width>
+					<height>40</height>
+					<label>$LOCALIZE[13271] $INFO[System.CPUUsage]</label>
+					<aligny>center</aligny>
+					<shadowcolor>black</shadowcolor>
+					<font>font12</font>
+					<visible>System.SupportsCPUUsage</visible>
+				</control>
+				<control type="progress">
+					<description>CPU BAR</description>
+					<width>730</width>
+					<height>16</height>
+					<info>System.CPUUsage</info>
+					<visible>System.SupportsCPUUsage</visible>
+				</control>
+			</control>
+			<control type="group">
+				<animation effect="slide" end="0,-55" time="0" condition="!System.SupportsCPUUsage">Conditional</animation>
+				<control type="label">
+					<top>155</top>
+					<left>460</left>
+					<width>auto</width>
+					<height>50</height>
+					<aligny>bottom</aligny>
+					<textoffsety>10</textoffsety>
+					<label>$LOCALIZE[31031]:</label>
+					<shadowcolor>black</shadowcolor>
+					<font>font25_title</font>
+				</control>
+				<control type="grouplist">
+					<description>Kodi build version</description>
+					<itemgap>10</itemgap>
+					<top>200</top>
+					<left>460</left>
+					<width>820</width>
+					<orientation>horizontal</orientation>
+					<control type="label">
+						<description>Build label</description>
+						<width>auto</width>
+						<height>40</height>
+						<font>font12</font>
+						<label>$LOCALIZE[144]</label>
+						<shadowcolor>black</shadowcolor>
+					</control>
+					<control type="label">
+						<description>Kodi Build Version</description>
+						<width>auto</width>
+						<height>40</height>
+						<font>font12</font>
+						<label>$INFO[System.BuildVersionShort]$INFO[System.BuildVersionCode, (,)]</label>
+						<textcolor>button_focus</textcolor>
+						<shadowcolor>black</shadowcolor>
+					</control>
+				</control>
+				<control type="grouplist">
+					<description>Git version</description>
+					<itemgap>10</itemgap>
+					<top>235</top>
+					<left>460</left>
+					<width>820</width>
+					<orientation>horizontal</orientation>
+					<control type="label">
+						<description>Git label</description>
+						<width>auto</width>
+						<height>40</height>
+						<font>font12</font>
+						<label>Git:</label>
+						<shadowcolor>black</shadowcolor>
+					</control>
+					<control type="label">
+						<description>Git version</description>
+						<width>auto</width>
+						<height>40</height>
+						<font>font12</font>
+						<label>$INFO[System.BuildVersionGit]</label>
+						<textcolor>button_focus</textcolor>
+						<shadowcolor>black</shadowcolor>
+					</control>
+				</control>
+				<control type="grouplist">
+					<description>Build date</description>
+					<itemgap>10</itemgap>
+					<top>270</top>
+					<left>460</left>
+					<width>820</width>
+					<orientation>horizontal</orientation>
+					<control type="label">
+						<description>kodi Compiled Text</description>
+						<width>auto</width>
+						<height>40</height>
+						<font>font12</font>
+						<label>$LOCALIZE[174]</label>
+						<shadowcolor>black</shadowcolor>
+					</control>
+					<control type="label" id="53">
+						<description>Kodi Build Date</description>
+						<width>auto</width>
+						<height>40</height>
+						<font>font12</font>
+						<textcolor>button_focus</textcolor>
+						<shadowcolor>black</shadowcolor>
+					</control>
+				</control>
+			</control>
+		</control>
+	</controls>
+</window>

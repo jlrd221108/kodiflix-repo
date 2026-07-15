@@ -1,0 +1,7 @@
+Kodiflix Helper
+
+SPDX-License-Identifier: GPL-2.0-only
+
+This add-on is distributed under the GNU General Public License, version 2.
+Its adaptive blur architecture was informed by the GPL-2.0 Nimbus Helper
+project by Ivar Brandt.

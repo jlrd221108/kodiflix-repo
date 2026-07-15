@@ -1,0 +1,21 @@
+﻿[B]1.0.4[/B]
+- Removed unavailable Pillow module repository dependency and refreshed update package.
+
+[B]1.0.3[/B]
+- Repo update package refresh.
+
+[B]1.0.2[/B]
+- Refined Kodiflix settings, popups, file manager, add-ons, event log, and Flix music views.
+- Updated compact settings styling, focus assets, background handling, and navigation behaviour.
+
+[B]1.0.0[/B]
+- Initial Kodiflix release.
+- Added artwork-led Flix views for movies, movie sets, TV shows, seasons, and episodes.
+- Added the Kodiflix Helper dependency for adaptive blurred backgrounds.
+- Added configurable progress indicators, UK age-rating artwork, rating positions, and resettable Flix customisation.
+- Added aggregate movie-set metadata for count, release range, and total runtime.
+- Added the streamlined Home movie row with landscape artwork and Flix-style metadata.
+- Reworked the movie information screen with poster, cast, and info views.
+- Removed inherited and superseded Estuary assets and metadata.
+
+

@@ -1,0 +1,12 @@
+Kodiflix is derived from Kodi's Estuary skin by phil65 and Team Kodi.
+
+Estuary artwork is licensed under the Creative Commons
+Attribution-ShareAlike 4.0 International licence:
+https://creativecommons.org/licenses/by-sa/4.0/
+
+Estuary and Kodiflix code is distributed under the GNU General Public
+License, version 2.0:
+https://www.gnu.org/licenses/gpl-2.0.html
+
+Bundled open-source fonts retain their respective licence files in the
+fonts directory.

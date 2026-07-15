@@ -1,0 +1,848 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+	<include name="FlixCentredAgeRatingControl">
+		<definition>
+			<control type="group">
+				<width>97</width>
+				<visible>$PARAM[visible]</visible>
+				<control type="group">
+					<visible>String.IsEmpty(Skin.String(Kodiflix.AgeRatingStyle)) | String.IsEqual(Skin.String(Kodiflix.AgeRatingStyle),Pill) | [String.IsEqual(Skin.String(Kodiflix.AgeRatingStyle),New) + !$EXP[flix_age_rating_new_available]] | [String.IsEqual(Skin.String(Kodiflix.AgeRatingStyle),Legacy) + !$EXP[flix_age_rating_legacy_available]]</visible>
+					<control type="image">
+						<width>97</width>
+						<height>43</height>
+						<texture border="8">special://skin/extras/flix-pill-bg.png</texture>
+					</control>
+					<control type="label">
+						<left>8</left>
+						<width>81</width>
+						<height>43</height>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>font20_title</font>
+						<label>$INFO[ListItem.MPAA]</label>
+					</control>
+				</control>
+				<control type="image">
+					<left>27</left>
+					<width>43</width>
+					<height>43</height>
+					<aspectratio align="center" aligny="center">keep</aspectratio>
+					<texture>$VAR[FlixAgeRatingNewIconVar]</texture>
+					<visible>String.IsEqual(Skin.String(Kodiflix.AgeRatingStyle),New) + $EXP[flix_age_rating_new_available]</visible>
+				</control>
+				<control type="image">
+					<left>-3</left>
+					<top>-13</top>
+					<width>102</width>
+					<height>69</height>
+					<aspectratio align="center" aligny="center">keep</aspectratio>
+					<texture>$VAR[FlixAgeRatingLegacyIconVar]</texture>
+					<visible>String.IsEqual(Skin.String(Kodiflix.AgeRatingStyle),Legacy) + $EXP[flix_age_rating_legacy_available]</visible>
+				</control>
+			</control>
+		</definition>
+	</include>
+	<include name="FlixExpandedListLayouts">
+		<itemlayout width="305" height="460" condition="Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons)">
+			<control type="image">
+				<left>15</left>
+				<top>32</top>
+				<width>263</width>
+				<height>396</height>
+				<aspectratio scalediffuse="false">scale</aspectratio>
+				<texture background="true" diffuse="special://skin/extras/flix-poster-mask-v4.png" fallback="DefaultMovies.png">$VAR[PosterThumbVar]</texture>
+			</control>
+			<control type="progress">
+				<left>24</left>
+				<top>424</top>
+				<width>245</width>
+				<height>4</height>
+				<texturebg />
+				<midtexture colordiffuse="FFFFB33C">colors/white.png</midtexture>
+				<info>ListItem.PercentPlayed</info>
+				<visible>!Integer.IsEqual(ListItem.PercentPlayed,0) + !Skin.HasSetting(flix_hide_movie_progress)</visible>
+			</control>
+		</itemlayout>
+		<focusedlayout width="305" height="460" condition="Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons)">
+			<control type="group">
+				<depth>DepthContentPopout</depth>
+				<control type="image">
+					<left>0</left>
+					<top>12</top>
+					<width>299</width>
+					<height>435</height>
+					<texture colordiffuse="FFFFFFFF">special://skin/extras/flix-poster-glow.png</texture>
+					<bordersize>-10</bordersize>
+					<include>Animation_FocusTextureFade</include>
+					<include content="GlowPulse">
+						<param name="pos_x" value="149.5"/>
+						<param name="pos_y" value="229.5"/>
+					</include>
+				</control>
+				<control type="image">
+					<left>15</left>
+					<top>32</top>
+					<width>263</width>
+					<height>396</height>
+					<aspectratio scalediffuse="false">scale</aspectratio>
+					<fadetime>200</fadetime>
+					<texture background="true" diffuse="special://skin/extras/flix-poster-mask-v4.png" fallback="DefaultMovies.png">$VAR[PosterThumbVar]</texture>
+				</control>
+				<control type="progress">
+					<left>24</left>
+					<top>424</top>
+					<width>245</width>
+					<height>4</height>
+					<texturebg />
+					<midtexture colordiffuse="FFFFB33C">colors/white.png</midtexture>
+					<info>ListItem.PercentPlayed</info>
+					<visible>!Integer.IsEqual(ListItem.PercentPlayed,0) + !Skin.HasSetting(flix_hide_movie_progress)</visible>
+				</control>
+			</control>
+		</focusedlayout>
+	</include>
+
+	<include name="FlixMusicListLayouts">
+		<itemlayout width="305" height="460" condition="Container.Content(artists)">
+			<control type="image">
+				<left>13</left>
+				<top>55</top>
+				<width>279</width>
+				<height>279</height>
+				<aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+				<texture background="true" diffuse="special://skin/extras/flix-circle-mask.png" fallback="DefaultArtist.png">$VAR[FlixMusicThumbVar]</texture>
+			</control>
+			<control type="label">
+				<left>10</left>
+				<top>354</top>
+				<width>285</width>
+				<height>52</height>
+				<font>font25_title</font>
+				<align>center</align>
+				<aligny>center</aligny>
+				<textcolor>FFDCDCDC</textcolor>
+				<shadowcolor>DD000000</shadowcolor>
+				<label>$INFO[ListItem.Label]</label>
+			</control>
+		</itemlayout>
+		<focusedlayout width="305" height="460" condition="Container.Content(artists)">
+			<control type="group">
+				<depth>DepthContentPopout</depth>
+				<control type="image">
+					<left>-12</left>
+					<top>30</top>
+					<width>329</width>
+					<height>329</height>
+					<texture colordiffuse="FFFFFFFF">special://skin/extras/flix-circle-glow.png</texture>
+					<include>Animation_FocusTextureFade</include>
+					<include content="GlowPulse">
+						<param name="pos_x" value="152.5"/>
+						<param name="pos_y" value="194.5"/>
+					</include>
+				</control>
+				<control type="image">
+					<left>13</left>
+					<top>55</top>
+					<width>279</width>
+					<height>279</height>
+					<aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+					<fadetime>200</fadetime>
+					<texture background="true" diffuse="special://skin/extras/flix-circle-mask.png" fallback="DefaultArtist.png">$VAR[FlixMusicThumbVar]</texture>
+				</control>
+				<control type="label">
+					<left>10</left>
+					<top>354</top>
+					<width>285</width>
+					<height>52</height>
+					<font>font25_title</font>
+					<align>center</align>
+					<aligny>center</aligny>
+					<textcolor>FFFFFFFF</textcolor>
+					<shadowcolor>DD000000</shadowcolor>
+					<label>$INFO[ListItem.Label]</label>
+				</control>
+			</control>
+		</focusedlayout>
+		<itemlayout width="305" height="460" condition="Container.Content(albums)">
+			<control type="image">
+				<left>28</left>
+				<top>32</top>
+				<width>249</width>
+				<height>249</height>
+				<aspectratio align="center" aligny="center">scale</aspectratio>
+				<texture background="true" fallback="DefaultAlbumCover.png">$VAR[FlixMusicThumbVar]</texture>
+			</control>
+			<control type="label">
+				<left>10</left>
+				<top>304</top>
+				<width>285</width>
+				<height>78</height>
+				<font>font20_title</font>
+				<align>center</align>
+				<aligny>center</aligny>
+				<textcolor>FFDCDCDC</textcolor>
+				<shadowcolor>DD000000</shadowcolor>
+				<label>$INFO[ListItem.Label]</label>
+			</control>
+		</itemlayout>
+		<focusedlayout width="305" height="460" condition="Container.Content(albums)">
+			<control type="group">
+				<depth>DepthContentPopout</depth>
+				<control type="image">
+					<left>16</left>
+					<top>20</top>
+					<width>273</width>
+					<height>273</height>
+					<texture colordiffuse="70FFFFFF">colors/white.png</texture>
+					<include>Animation_FocusTextureFade</include>
+					<include content="GlowPulse">
+						<param name="pos_x" value="152.5"/>
+						<param name="pos_y" value="156.5"/>
+					</include>
+				</control>
+				<control type="image">
+					<left>28</left>
+					<top>32</top>
+					<width>249</width>
+					<height>249</height>
+					<aspectratio align="center" aligny="center">scale</aspectratio>
+					<fadetime>200</fadetime>
+					<texture background="true" fallback="DefaultAlbumCover.png">$VAR[FlixMusicThumbVar]</texture>
+				</control>
+				<control type="label">
+					<left>10</left>
+					<top>304</top>
+					<width>285</width>
+					<height>78</height>
+					<font>font20_title</font>
+					<align>center</align>
+					<aligny>center</aligny>
+					<textcolor>FFFFFFFF</textcolor>
+					<shadowcolor>DD000000</shadowcolor>
+					<label>$INFO[ListItem.Label]</label>
+				</control>
+			</control>
+		</focusedlayout>
+	</include>
+
+	<include name="FlixEpisodeNormalListLayouts">
+		<itemlayout width="613" height="410">
+			<control type="image">
+				<left>20</left>
+				<top>31</top>
+				<width>582</width>
+				<height>327</height>
+				<aspectratio scalediffuse="false">scale</aspectratio>
+				<texture background="true" diffuse="special://skin/extras/flix-episode-mask.png" fallback="DefaultTVShows.png">$VAR[FlixEpisodeThumbVar]</texture>
+				<bordersize>1</bordersize>
+				<bordertexture colordiffuse="40FFFFFF" border="15" infill="false">special://skin/extras/flix-episode-border.png</bordertexture>
+			</control>
+			<control type="image">
+				<left>21</left>
+				<top>238</top>
+				<width>580</width>
+				<height>120</height>
+				<texture colordiffuse="A8FFFFFF">special://skin/extras/flix-episode-label-fade.png</texture>
+			</control>
+			<control type="label">
+				<left>40</left>
+				<top>300</top>
+				<width>540</width>
+				<height>46</height>
+				<aligny>center</aligny>
+				<font>font20_title</font>
+				<textcolor>FFD0D0D0</textcolor>
+				<shadowcolor>DD000000</shadowcolor>
+				<label>$INFO[ListItem.Season]$INFO[ListItem.Episode,x,]$INFO[ListItem.Title, | ]</label>
+			</control>
+			<control type="progress">
+				<left>29</left>
+				<top>354</top>
+				<width>564</width>
+				<height>4</height>
+				<texturebg />
+				<midtexture colordiffuse="FFFFB33C">colors/white.png</midtexture>
+				<info>ListItem.PercentPlayed</info>
+				<visible>!Integer.IsEqual(ListItem.PercentPlayed,0) + !Skin.HasSetting(flix_hide_movie_progress)</visible>
+			</control>
+		</itemlayout>
+		<focusedlayout width="613" height="410">
+			<control type="group">
+				<depth>DepthContentPopout</depth>
+				<control type="image">
+					<left>3</left>
+					<top>17</top>
+					<width>615</width>
+					<height>352</height>
+					<texture colordiffuse="FFFFFFFF">special://skin/extras/flix-episode-glow.png</texture>
+					<bordersize>-15</bordersize>
+					<include>Animation_FocusTextureFade</include>
+					<include content="GlowPulse">
+						<param name="pos_x" value="307.5"/>
+						<param name="pos_y" value="176"/>
+					</include>
+				</control>
+				<control type="image">
+					<left>20</left>
+					<top>31</top>
+					<width>582</width>
+					<height>327</height>
+					<aspectratio scalediffuse="false">scale</aspectratio>
+					<fadetime>200</fadetime>
+					<texture background="true" diffuse="special://skin/extras/flix-episode-mask.png" fallback="DefaultTVShows.png">$VAR[FlixEpisodeThumbVar]</texture>
+					<bordersize>1</bordersize>
+					<bordertexture colordiffuse="40FFFFFF" border="15" infill="false">special://skin/extras/flix-episode-border.png</bordertexture>
+				</control>
+				<control type="image">
+					<left>21</left>
+					<top>238</top>
+					<width>580</width>
+					<height>120</height>
+					<texture colordiffuse="A8FFFFFF">special://skin/extras/flix-episode-label-fade.png</texture>
+				</control>
+				<control type="label">
+					<left>40</left>
+					<top>300</top>
+					<width>540</width>
+					<height>46</height>
+					<aligny>center</aligny>
+					<font>font20_title</font>
+					<textcolor>FFFFFFFF</textcolor>
+					<shadowcolor>DD000000</shadowcolor>
+					<label>$INFO[ListItem.Season]$INFO[ListItem.Episode,x,]$INFO[ListItem.Title, | ]</label>
+					<scroll>true</scroll>
+				</control>
+				<control type="progress">
+					<left>29</left>
+					<top>354</top>
+					<width>564</width>
+					<height>4</height>
+					<texturebg />
+					<midtexture colordiffuse="FFFFB33C">colors/white.png</midtexture>
+					<info>ListItem.PercentPlayed</info>
+					<visible>!Integer.IsEqual(ListItem.PercentPlayed,0) + !Skin.HasSetting(flix_hide_movie_progress)</visible>
+				</control>
+			</control>
+		</focusedlayout>
+	</include>
+
+	<include name="View_56_Flix">
+		<control type="group">
+			<description>Flix movie, TV show and season viewtype</description>
+			<visible>Control.IsVisible(56) | Control.IsVisible(57)</visible>
+			<animation effect="fade" start="0" end="100" time="300">WindowOpen</animation>
+			<animation effect="fade" start="100" end="0" time="200">WindowClose</animation>
+			<animation effect="fade" time="250">VisibleChange</animation>
+
+			<!-- Artwork feed monitored by the external Kodiflix Helper service -->
+			<control type="image" id="56000">
+				<left>-3000</left>
+				<top>-3000</top>
+				<width>1</width>
+				<height>1</height>
+				<texture background="true">$VAR[MediaFanartVar]</texture>
+				<visible>false</visible>
+			</control>
+			<control type="label" id="56001">
+				<left>-3000</left>
+				<top>-3000</top>
+				<width>1</width>
+				<height>1</height>
+				<label>$INFO[ListItem.DBID]</label>
+				<visible>false</visible>
+			</control>
+			<control type="label" id="56002">
+				<left>-3000</left>
+				<top>-3000</top>
+				<width>1</width>
+				<height>1</height>
+				<label>$INFO[ListItem.DBType]</label>
+				<visible>false</visible>
+			</control>
+
+			<!-- Background fallback -->
+			<control type="image">
+				<left>0</left>
+				<top>0</top>
+				<width>1920</width>
+				<height>1080</height>
+				<texture colordiffuse="FF050403">colors/white.png</texture>
+			</control>
+
+			<!-- Adaptive blur generated and cached by script.kodiflix.helper -->
+			<control type="image">
+				<left>0</left>
+				<top>0</top>
+				<width>1920</width>
+				<height>1080</height>
+				<aspectratio>scale</aspectratio>
+				<fadetime>450</fadetime>
+				<texture colordiffuse="FF5F5F5F">$INFO[Window(home).Property(kodiflix.helper.flix_blurred)]</texture>
+				<visible>System.AddonIsEnabled(script.kodiflix.helper) + !String.IsEmpty(Window(home).Property(kodiflix.helper.flix_blurred)) + !Skin.HasSetting(flix_disable_background_blur)</visible>
+			</control>
+			<!-- Netflix-style selected fanart anchored top-right -->
+			<control type="image">
+				<left>640</left>
+				<top>0</top>
+				<width>1360</width>
+				<height>720</height>
+				<aspectratio align="right" aligny="top">scale</aspectratio>
+				<fadetime>350</fadetime>
+				<texture background="true" diffuse="special://skin/extras/flix-fanart-diffuse-v4.png" fallback="special://skin/extras/home-images/movie.jpg">$VAR[MediaFanartVar]</texture>
+			</control>
+
+			<!-- Clearlogo, with a text title when clearlogo artwork is unavailable -->
+			<control type="image">
+				<left>53</left>
+				<top>65</top>
+				<width>456</width>
+				<height>190</height>
+				<aspectratio align="center" aligny="center">keep</aspectratio>
+				<fadetime>250</fadetime>
+				<texture background="true">$VAR[FlixClearLogoVar]</texture>
+				<visible>!String.IsEmpty(ListItem.Art(clearlogo)) | !String.IsEmpty(ListItem.Art(tvshow.clearlogo)) | !String.IsEmpty(Container.Art(tvshow.clearlogo))</visible>
+			</control>
+			<control type="label">
+				<left>53</left>
+				<top>82</top>
+				<width>456</width>
+				<height>150</height>
+				<font>font60</font>
+				<align>center</align>
+				<aligny>center</aligny>
+				<label>$VAR[FlixTitleVar]</label>
+				<shadowcolor>DD000000</shadowcolor>
+				<visible>!String.IsEqual(ListItem.DBType,season) + String.IsEmpty(ListItem.Art(clearlogo)) + String.IsEmpty(ListItem.Art(tvshow.clearlogo)) + String.IsEmpty(Container.Art(tvshow.clearlogo))</visible>
+			</control>
+			<control type="label">
+				<left>53</left>
+				<top>82</top>
+				<width>456</width>
+				<height>150</height>
+				<font>font60</font>
+				<align>center</align>
+				<aligny>center</aligny>
+				<label>$INFO[ListItem.TVShowTitle]</label>
+				<shadowcolor>DD000000</shadowcolor>
+				<visible>String.IsEqual(ListItem.DBType,season) + String.IsEmpty(ListItem.Art(clearlogo)) + String.IsEmpty(ListItem.Art(tvshow.clearlogo)) + String.IsEmpty(Container.Art(tvshow.clearlogo))</visible>
+			</control>
+
+			<!-- Movie metadata chips -->
+			<control type="grouplist">
+				<left>53</left>
+				<top>296</top>
+				<width>930</width>
+				<height>43</height>
+				<orientation>horizontal</orientation>
+				<itemgap>19</itemgap>
+				<usecontrolcoords>true</usecontrolcoords>
+				<!-- Left means the first visible metadata item for every content type. -->
+				<control type="group">
+					<width>97</width>
+					<visible>!String.IsEqual(ListItem.DBType,set) + !String.IsEmpty(ListItem.MPAA) + String.IsEqual(Skin.String(Kodiflix.AgeRatingPosition),Left)</visible>
+					<control type="group">
+						<visible>String.IsEmpty(Skin.String(Kodiflix.AgeRatingStyle)) | String.IsEqual(Skin.String(Kodiflix.AgeRatingStyle),Pill) | [String.IsEqual(Skin.String(Kodiflix.AgeRatingStyle),New) + !$EXP[flix_age_rating_new_available]] | [String.IsEqual(Skin.String(Kodiflix.AgeRatingStyle),Legacy) + !$EXP[flix_age_rating_legacy_available]]</visible>
+						<control type="image">
+							<width>97</width>
+							<height>43</height>
+							<texture border="8">special://skin/extras/flix-pill-bg.png</texture>
+						</control>
+						<control type="label">
+							<left>8</left>
+							<width>81</width>
+							<height>43</height>
+							<align>center</align>
+							<aligny>center</aligny>
+							<font>font20_title</font>
+							<label>$INFO[ListItem.MPAA]</label>
+						</control>
+					</control>
+					<control type="image">
+						<left>27</left>
+						<width>43</width>
+						<height>43</height>
+						<aspectratio align="center" aligny="center">keep</aspectratio>
+						<texture>$VAR[FlixAgeRatingNewIconVar]</texture>
+						<visible>String.IsEqual(Skin.String(Kodiflix.AgeRatingStyle),New) + $EXP[flix_age_rating_new_available]</visible>
+					</control>
+					<control type="image">
+						<left>-3</left>
+						<top>-13</top>
+						<width>102</width>
+						<height>69</height>
+						<aspectratio align="center" aligny="center">keep</aspectratio>
+						<texture>$VAR[FlixAgeRatingLegacyIconVar]</texture>
+						<visible>String.IsEqual(Skin.String(Kodiflix.AgeRatingStyle),Legacy) + $EXP[flix_age_rating_legacy_available]</visible>
+					</control>
+				</control>
+				<!-- TV show summary chips -->
+				<control type="group">
+					<width>120</width>
+					<visible>String.IsEqual(ListItem.DBType,tvshow) + !String.IsEmpty(ListItem.Year)</visible>
+					<control type="image">
+						<width>120</width>
+						<height>43</height>
+						<texture border="8">special://skin/extras/flix-pill-bg.png</texture>
+					</control>
+					<control type="label">
+						<left>8</left>
+						<width>104</width>
+						<height>43</height>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>font20_title</font>
+						<label>$INFO[ListItem.Year]</label>
+					</control>
+				</control>
+				<control type="group">
+					<width>160</width>
+					<visible>String.IsEqual(ListItem.DBType,tvshow) + !String.IsEmpty(ListItem.Property(TotalSeasons))</visible>
+					<control type="image">
+						<width>160</width>
+						<height>43</height>
+						<texture border="8">special://skin/extras/flix-pill-bg.png</texture>
+					</control>
+					<control type="label">
+						<left>8</left>
+						<width>144</width>
+						<height>43</height>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>font20_title</font>
+						<label>$INFO[ListItem.Property(TotalSeasons),, SEASONS]</label>
+					</control>
+				</control>
+				<include content="FlixCentredAgeRatingControl">
+					<param name="visible" value="String.IsEqual(ListItem.DBType,tvshow) + !String.IsEmpty(ListItem.MPAA) + [String.IsEmpty(Skin.String(Kodiflix.AgeRatingPosition)) | String.IsEqual(Skin.String(Kodiflix.AgeRatingPosition),Center)]" />
+				</include>
+				<control type="group">
+					<width>190</width>
+					<visible>String.IsEqual(ListItem.DBType,tvshow) + !String.IsEmpty(ListItem.Status)</visible>
+					<control type="image">
+						<width>190</width>
+						<height>43</height>
+						<texture border="8">special://skin/extras/flix-pill-bg.png</texture>
+					</control>
+					<control type="label">
+						<left>8</left>
+						<width>174</width>
+						<height>43</height>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>font20_title</font>
+						<label>$INFO[ListItem.Status]</label>
+					</control>
+				</control>
+				<!-- Season summary chips -->
+				<control type="group">
+					<width>150</width>
+					<visible>String.IsEqual(ListItem.DBType,season) + !String.IsEmpty(ListItem.Season)</visible>
+					<control type="image">
+						<width>150</width>
+						<height>43</height>
+						<texture border="8">special://skin/extras/flix-pill-bg.png</texture>
+					</control>
+					<control type="label">
+						<left>8</left>
+						<width>134</width>
+						<height>43</height>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>font20_title</font>
+						<label>$INFO[ListItem.Season,SEASON ]</label>
+					</control>
+				</control>
+				<include content="FlixCentredAgeRatingControl">
+					<param name="visible" value="String.IsEqual(ListItem.DBType,season) + !String.IsEmpty(ListItem.MPAA) + [String.IsEmpty(Skin.String(Kodiflix.AgeRatingPosition)) | String.IsEqual(Skin.String(Kodiflix.AgeRatingPosition),Center)]" />
+				</include>
+				<control type="group">
+					<width>170</width>
+					<visible>String.IsEqual(ListItem.DBType,season) + !String.IsEmpty(ListItem.Property(TotalEpisodes))</visible>
+					<control type="image">
+						<width>170</width>
+						<height>43</height>
+						<texture border="8">special://skin/extras/flix-pill-bg.png</texture>
+					</control>
+					<control type="label">
+						<left>8</left>
+						<width>154</width>
+						<height>43</height>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>font20_title</font>
+						<label>$INFO[ListItem.Property(TotalEpisodes),, EPISODES]</label>
+					</control>
+				</control>
+				<control type="group">
+					<width>150</width>
+					<visible>String.IsEqual(ListItem.DBType,set) + !String.IsEmpty(Window(home).Property(kodiflix.helper.set_count))</visible>
+					<control type="image">
+						<width>150</width>
+						<height>43</height>
+						<texture border="8">special://skin/extras/flix-pill-bg.png</texture>
+					</control>
+					<control type="label">
+						<left>8</left>
+						<width>134</width>
+						<height>43</height>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>font20_title</font>
+						<label>$INFO[Window(home).Property(kodiflix.helper.set_count)]</label>
+					</control>
+				</control>
+				<control type="group">
+					<width>150</width>
+					<visible>String.IsEqual(ListItem.DBType,set) + !String.IsEmpty(Window(home).Property(kodiflix.helper.set_years))</visible>
+					<control type="image">
+						<width>150</width>
+						<height>43</height>
+						<texture border="8">special://skin/extras/flix-pill-bg.png</texture>
+					</control>
+					<control type="label">
+						<left>8</left>
+						<width>134</width>
+						<height>43</height>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>font20_title</font>
+						<label>$INFO[Window(home).Property(kodiflix.helper.set_years)]</label>
+					</control>
+				</control>
+				<control type="group">
+					<width>180</width>
+					<visible>String.IsEqual(ListItem.DBType,set) + !String.IsEmpty(Window(home).Property(kodiflix.helper.set_runtime))</visible>
+					<control type="image">
+						<width>180</width>
+						<height>43</height>
+						<texture border="8">special://skin/extras/flix-pill-bg.png</texture>
+					</control>
+					<control type="label">
+						<left>8</left>
+						<width>164</width>
+						<height>43</height>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>font20_title</font>
+						<label>$INFO[Window(home).Property(kodiflix.helper.set_runtime)]</label>
+					</control>
+				</control>
+				<!-- Artist summary chips -->
+				<control type="group">
+					<width>160</width>
+					<visible>[String.IsEqual(ListItem.DBType,artist) | Container.Content(artists)] + [!String.IsEmpty(ListItem.Property(AlbumCount)) | !String.IsEmpty(ListItem.Property(Artist_AlbumCount)) | !String.IsEmpty(ListItem.Property(albums))]</visible>
+					<control type="image">
+						<width>160</width>
+						<height>43</height>
+						<texture border="8">special://skin/extras/flix-pill-bg.png</texture>
+					</control>
+					<control type="label">
+						<left>8</left>
+						<width>144</width>
+						<height>43</height>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>font20_title</font>
+						<label>$VAR[FlixArtistAlbumCountVar]</label>
+					</control>
+				</control>
+				<control type="group">
+					<width>260</width>
+					<visible>[String.IsEqual(ListItem.DBType,artist) | Container.Content(artists)] + !String.IsEmpty(ListItem.Genre)</visible>
+					<control type="image">
+						<width>260</width>
+						<height>43</height>
+						<texture border="8">special://skin/extras/flix-pill-bg.png</texture>
+					</control>
+					<control type="label">
+						<left>12</left>
+						<width>236</width>
+						<height>43</height>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>font20_title</font>
+						<label>$INFO[ListItem.Genre]</label>
+					</control>
+				</control>
+				<control type="group">
+					<width>141</width>
+					<visible>!String.IsEqual(ListItem.DBType,artist) + !String.IsEqual(ListItem.DBType,album) + !String.IsEqual(ListItem.DBType,set) + !String.IsEqual(ListItem.DBType,tvshow) + !String.IsEqual(ListItem.DBType,season) + !String.IsEmpty(ListItem.Premiered)</visible>
+					<control type="image">
+						<width>141</width>
+						<height>43</height>
+						<texture border="8">special://skin/extras/flix-pill-bg.png</texture>
+					</control>
+					<control type="label">
+						<left>10</left>
+						<width>121</width>
+						<height>43</height>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>font20_title</font>
+						<label>$INFO[ListItem.Premiered]</label>
+					</control>
+				</control>
+				<control type="group">
+					<width>97</width>
+					<visible>!String.IsEqual(ListItem.DBType,artist) + !String.IsEqual(ListItem.DBType,album) + !String.IsEqual(ListItem.DBType,set) + !String.IsEqual(ListItem.DBType,tvshow) + !String.IsEqual(ListItem.DBType,season) + !String.IsEmpty(ListItem.MPAA) + [String.IsEmpty(Skin.String(Kodiflix.AgeRatingPosition)) | String.IsEqual(Skin.String(Kodiflix.AgeRatingPosition),Center)]</visible>
+					<control type="group">
+						<visible>String.IsEmpty(Skin.String(Kodiflix.AgeRatingStyle)) | String.IsEqual(Skin.String(Kodiflix.AgeRatingStyle),Pill) | [String.IsEqual(Skin.String(Kodiflix.AgeRatingStyle),New) + !$EXP[flix_age_rating_new_available]] | [String.IsEqual(Skin.String(Kodiflix.AgeRatingStyle),Legacy) + !$EXP[flix_age_rating_legacy_available]]</visible>
+						<control type="image">
+							<width>97</width>
+							<height>43</height>
+							<texture border="8">special://skin/extras/flix-pill-bg.png</texture>
+						</control>
+						<control type="label">
+							<left>8</left>
+							<width>81</width>
+							<height>43</height>
+							<align>center</align>
+							<aligny>center</aligny>
+							<font>font20_title</font>
+							<label>$INFO[ListItem.MPAA]</label>
+						</control>
+					</control>
+					<control type="image">
+						<left>27</left>
+						<width>43</width>
+						<height>43</height>
+						<aspectratio align="center" aligny="center">keep</aspectratio>
+						<texture>$VAR[FlixAgeRatingNewIconVar]</texture>
+						<visible>String.IsEqual(Skin.String(Kodiflix.AgeRatingStyle),New) + $EXP[flix_age_rating_new_available]</visible>
+					</control>
+					<control type="image">
+						<left>-3</left>
+						<top>-13</top>
+						<width>102</width>
+						<height>69</height>
+						<aspectratio align="center" aligny="center">keep</aspectratio>
+						<texture>$VAR[FlixAgeRatingLegacyIconVar]</texture>
+						<visible>String.IsEqual(Skin.String(Kodiflix.AgeRatingStyle),Legacy) + $EXP[flix_age_rating_legacy_available]</visible>
+					</control>
+				</control>
+				<control type="group">
+					<width>180</width>
+					<visible>!String.IsEqual(ListItem.DBType,artist) + !String.IsEqual(ListItem.DBType,album) + !String.IsEqual(ListItem.DBType,set) + !String.IsEqual(ListItem.DBType,tvshow) + !String.IsEqual(ListItem.DBType,season) + !String.IsEmpty(ListItem.Duration)</visible>
+					<control type="image">
+						<width>180</width>
+						<height>43</height>
+						<texture border="8">special://skin/extras/flix-pill-bg.png</texture>
+					</control>
+					<control type="label">
+						<left>8</left>
+						<width>164</width>
+						<height>43</height>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>font20_title</font>
+						<label>$VAR[FlixRuntimeVar]</label>
+					</control>
+				</control>
+				<control type="group">
+					<width>97</width>
+					<visible>!String.IsEqual(ListItem.DBType,artist) + !String.IsEqual(ListItem.DBType,album) + !String.IsEqual(ListItem.DBType,set) + !String.IsEmpty(ListItem.MPAA) + String.IsEqual(Skin.String(Kodiflix.AgeRatingPosition),Right)</visible>
+					<control type="group">
+						<visible>String.IsEmpty(Skin.String(Kodiflix.AgeRatingStyle)) | String.IsEqual(Skin.String(Kodiflix.AgeRatingStyle),Pill) | [String.IsEqual(Skin.String(Kodiflix.AgeRatingStyle),New) + !$EXP[flix_age_rating_new_available]] | [String.IsEqual(Skin.String(Kodiflix.AgeRatingStyle),Legacy) + !$EXP[flix_age_rating_legacy_available]]</visible>
+						<control type="image">
+							<width>97</width>
+							<height>43</height>
+							<texture border="8">special://skin/extras/flix-pill-bg.png</texture>
+						</control>
+						<control type="label">
+							<left>8</left>
+							<width>81</width>
+							<height>43</height>
+							<align>center</align>
+							<aligny>center</aligny>
+							<font>font20_title</font>
+							<label>$INFO[ListItem.MPAA]</label>
+						</control>
+					</control>
+					<control type="image">
+						<left>27</left>
+						<width>43</width>
+						<height>43</height>
+						<aspectratio align="center" aligny="center">keep</aspectratio>
+						<texture>$VAR[FlixAgeRatingNewIconVar]</texture>
+						<visible>String.IsEqual(Skin.String(Kodiflix.AgeRatingStyle),New) + $EXP[flix_age_rating_new_available]</visible>
+					</control>
+					<control type="image">
+						<left>-3</left>
+						<top>-13</top>
+						<width>102</width>
+						<height>69</height>
+						<aspectratio align="center" aligny="center">keep</aspectratio>
+						<texture>$VAR[FlixAgeRatingLegacyIconVar]</texture>
+						<visible>String.IsEqual(Skin.String(Kodiflix.AgeRatingStyle),Legacy) + $EXP[flix_age_rating_legacy_available]</visible>
+					</control>
+				</control>
+			</control>
+
+			<!-- Plot -->
+			<control type="textbox">
+				<left>50</left>
+				<top>362</top>
+				<width>760</width>
+				<height>205</height>
+				<font>font_flix_plot</font>
+				<textcolor>FFF0EDF0</textcolor>
+				<shadowcolor>DD000000</shadowcolor>
+				<label>$VAR[FlixPlotTextBoxVar]</label>
+				<autoscroll delay="8000" time="4000" repeat="8000">Skin.HasSetting(autoscroll)</autoscroll>
+			</control>
+
+			<!-- Poster rail -->
+			<control type="group">
+				<left>30</left>
+				<top>591</top>
+				<width>1890</width>
+				<height>460</height>
+				<clip>true</clip>
+				<visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(artists) | Container.Content(albums)</visible>
+				<control type="list" id="56">
+					<visible>!Container.Content(episodes)</visible>
+					<left>8</left>
+					<top>0</top>
+					<width>1882</width>
+					<height>460</height>
+					<orientation>horizontal</orientation>
+					<scrolltime tween="cubic" easing="out">500</scrolltime>
+					<preloaditems>2</preloaditems>
+					<onleft>56</onleft>
+					<onright>56</onright>
+					<onup>9000</onup>
+					<ondown>56</ondown>
+					<viewtype label="Flix">icon</viewtype>
+					<include>FlixExpandedListLayouts</include>
+					<include>FlixMusicListLayouts</include>
+				</control>
+			</control>
+
+			<!-- Episode thumb rail -->
+			<control type="group">
+				<left>30</left>
+				<top>620</top>
+				<width>1890</width>
+				<height>460</height>
+				<clip>true</clip>
+				<visible>Container.Content(episodes)</visible>
+				<control type="list" id="57">
+					<visible>Container.Content(episodes)</visible>
+					<left>8</left>
+					<top>0</top>
+					<width>1882</width>
+					<height>430</height>
+					<orientation>horizontal</orientation>
+					<scrolltime tween="cubic" easing="out">500</scrolltime>
+					<preloaditems>2</preloaditems>
+					<onleft>57</onleft>
+					<onright>57</onright>
+					<onup>9000</onup>
+					<ondown>57</ondown>
+					<viewtype label="Flix">icon</viewtype>
+					<include>FlixEpisodeNormalListLayouts</include>
+				</control>
+			</control>
+		</control>
+	</include>
+</includes>

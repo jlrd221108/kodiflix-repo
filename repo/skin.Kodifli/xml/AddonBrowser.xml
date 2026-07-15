@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">50</defaultcontrol>
+	<backgroundcolor>background</backgroundcolor>
+	<views>50,52,55</views>
+	<menucontrol>9000</menucontrol>
+	<controls>
+		<include>DefaultBackground</include>
+		<control type="image">
+			<visible>Skin.HasSetting(KodiflixSettingsPopupStyle)</visible>
+			<depth>DepthBackground</depth>
+			<include>FullScreenDimensions</include>
+			<aspectratio>scale</aspectratio>
+			<texture>$VAR[KodiflixSettingsBackgroundVar]</texture>
+		</control>
+		<control type="image">
+			<visible>Skin.HasSetting(KodiflixSettingsPopupStyle)</visible>
+			<left>60</left>
+			<top>180</top>
+			<width>1800</width>
+			<height>720</height>
+			<texture border="32" colordiffuse="700F1415">kodiflix/settings-panel-rounded.png</texture>
+		</control>
+		<control type="group">
+			<include>Kodiflix_SettingsTextFade</include>
+			<control type="image">
+				<left>130</left>
+				<top>245</top>
+				<width>360</width>
+				<height>360</height>
+				<texture fallback="DefaultAddon.png" colordiffuse="FFFFFFFF">$INFO[Container(50).ListItem.Icon]</texture>
+				<aspectratio>keep</aspectratio>
+			</control>
+			<control type="fixedlist" id="50">
+				<left>610</left>
+				<top>285</top>
+				<width>1200</width>
+				<height>510</height>
+				<movement>3</movement>
+				<focusposition>1</focusposition>
+				<scrolltime tween="cubic" easing="out">350</scrolltime>
+				<orientation>vertical</orientation>
+				<pagecontrol>60</pagecontrol>
+				<onleft>50</onleft>
+				<onright>noop</onright>
+				<onup>50</onup>
+				<ondown>50</ondown>
+				<viewtype label="$LOCALIZE[535]">list</viewtype>
+				<itemlayout height="75" width="1200">
+					<control type="image">
+						<left>30</left>
+						<centertop>50%</centertop>
+						<width>48</width>
+						<height>48</height>
+						<texture fallback="DefaultAddon.png" colordiffuse="C8FFFFFF">$INFO[ListItem.Icon]</texture>
+						<aspectratio>keep</aspectratio>
+					</control>
+					<control type="label">
+						<left>118</left>
+						<right>60</right>
+						<height>75</height>
+						<aligny>center</aligny>
+						<font>font32</font>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+				</itemlayout>
+				<focusedlayout height="75" width="1200">
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>1200</width>
+						<height>75</height>
+						<texture border="24" colordiffuse="70FFFFFF">kodiflix/settings-panel-rounded.png</texture>
+						<visible>Control.HasFocus(50) + !Skin.HasSetting(KodiflixSettingsSquareFocus)</visible>
+					</control>
+<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>1200</width>
+						<height>75</height>
+						<texture border="24" colordiffuse="70FFFFFF">kodiflix/settings-panel-square.png</texture>
+						<visible>Control.HasFocus(50) + Skin.HasSetting(KodiflixSettingsSquareFocus)</visible>
+					</control>
+					<control type="image">
+						<left>30</left>
+						<centertop>50%</centertop>
+						<width>48</width>
+						<height>48</height>
+						<texture fallback="DefaultAddon.png" colordiffuse="FFFFFFFF">$INFO[ListItem.Icon]</texture>
+						<aspectratio>keep</aspectratio>
+					</control>
+					<control type="label">
+						<left>118</left>
+						<right>60</right>
+						<height>75</height>
+						<aligny>center</aligny>
+						<font>font32</font>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+				</focusedlayout>
+			</control>
+			<control type="scrollbar" id="60">
+				<enable>!Skin.HasSetting(KodiflixSettingsPopupStyle)</enable>
+				<left>1815</left>
+				<top>285</top>
+				<width>12</width>
+				<height>510</height>
+				<orientation>vertical</orientation>
+				<onleft>50</onleft>
+				<onright>50</onright>
+				<texturesliderbackground />
+				<visible>!Skin.HasSetting(KodiflixSettingsPopupStyle)</visible>
+			</control>
+		</control>
+	</controls>
+</window>

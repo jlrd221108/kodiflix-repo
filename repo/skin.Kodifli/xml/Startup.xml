@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<onload condition="String.IsEmpty(Skin.String(Kodiflix.DefaultsVersion))">Skin.Reset(flix_disable_background_blur)</onload>
+	<onload condition="String.IsEmpty(Skin.String(Kodiflix.DefaultsVersion))">Skin.SetBool(flix_hide_movie_progress)</onload>
+	<onload condition="String.IsEmpty(Skin.String(Kodiflix.DefaultsVersion))">Skin.SetString(Kodiflix.BlurRadius,30)</onload>
+	<onload condition="String.IsEmpty(Skin.String(Kodiflix.DefaultsVersion))">Skin.SetString(Kodiflix.BlurSaturation,1.5)</onload>
+	<onload condition="String.IsEmpty(Skin.String(Kodiflix.DefaultsVersion))">Skin.SetString(Kodiflix.AgeRatingStyle,Legacy)</onload>
+	<onload condition="String.IsEmpty(Skin.String(Kodiflix.DefaultsVersion))">Skin.SetString(Kodiflix.AgeRatingPosition,Center)</onload>
+	<onload condition="String.IsEmpty(Skin.String(Kodiflix.DefaultsVersion))">Skin.SetBool(autoscroll)</onload>
+	<onload condition="String.IsEmpty(Skin.String(Kodiflix.DefaultsVersion))">Skin.SetBool(HomeMenuNoMusicVideoButton)</onload>
+	<onload condition="String.IsEmpty(Skin.String(Kodiflix.DefaultsVersion))">Skin.SetBool(HomeMenuNoTVButton)</onload>
+	<onload condition="String.IsEmpty(Skin.String(Kodiflix.DefaultsVersion))">Skin.SetBool(HomeMenuNoRadioButton)</onload>
+	<onload condition="String.IsEmpty(Skin.String(Kodiflix.DefaultsVersion))">Skin.SetBool(HomeMenuNoProgramsButton)</onload>
+	<onload condition="String.IsEmpty(Skin.String(Kodiflix.DefaultsVersion))">Skin.SetBool(HomeMenuNoPicturesButton)</onload>
+	<onload condition="String.IsEmpty(Skin.String(Kodiflix.DefaultsVersion))">Skin.SetBool(HomeMenuNoVideosButton)</onload>
+	<onload condition="String.IsEmpty(Skin.String(Kodiflix.DefaultsVersion))">Skin.SetBool(HomeMenuNoGamesButton)</onload>
+	<onload condition="String.IsEmpty(Skin.String(Kodiflix.DefaultsVersion))">Skin.SetBool(HomeMenuNoFavButton)</onload>
+	<onload condition="String.IsEmpty(Skin.String(Kodiflix.DefaultsVersion))">Skin.SetBool(HomeMenuNoWeatherButton)</onload>
+	<onload condition="String.IsEmpty(Skin.String(Kodiflix.DefaultsVersion))">Skin.SetString(Kodiflix.DefaultsVersion,1)</onload>
+	<onload>ReplaceWindow($INFO[System.StartupWindow])</onload>
+	<controls />
+</window>

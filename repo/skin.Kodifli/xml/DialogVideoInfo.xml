@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+  <defaultcontrol always="true">20000</defaultcontrol>
+  <onload>ClearProperty(kodiflix.info.plot)</onload>
+  <onload>SetProperty(kodiflix.info.blurred,$INFO[Window(home).Property(kodiflix.helper.flix_blurred)])</onload>
+  <onload>SetProperty(kodiflix.info.fanart,$ESCINFO[ListItem.Art(fanart)])</onload>
+  <onload>SetProperty(kodiflix.info.poster,$VAR[InfoDialogPosterVar])</onload>
+  <onload>SetProperty(kodiflix.info.clearlogo,$ESCINFO[ListItem.Art(clearlogo)])</onload>
+  <onload>SetProperty(kodiflix.info.title,$ESCINFO[ListItem.Title])</onload>
+  <onload>SetProperty(kodiflix.info.tagline,$ESCINFO[ListItem.TagLine])</onload>
+  <onload condition="!String.IsEmpty(ListItem.Plot)">SetProperty(kodiflix.info.plot,$ESCINFO[ListItem.Plot])</onload>
+  <onload condition="String.IsEmpty(ListItem.Plot) + !String.IsEmpty(ListItem.PlotOutline)">SetProperty(kodiflix.info.plot,$ESCINFO[ListItem.PlotOutline])</onload>
+  <onload>SetProperty(kodiflix.info.director,$ESCINFO[ListItem.Director])</onload>
+  <onload>SetProperty(kodiflix.info.writer,$ESCINFO[ListItem.Writer])</onload>
+  <onload>SetProperty(kodiflix.info.genre,$ESCINFO[ListItem.Genre])</onload>
+  <onload>SetProperty(kodiflix.info.studio,$ESCINFO[ListItem.Studio])</onload>
+  <onload>SetProperty(kodiflix.info.set,$ESCINFO[ListItem.Set])</onload>
+  <onload>SetProperty(kodiflix.info.status,$ESCINFO[ListItem.Status])</onload>
+  <onload>SetProperty(kodiflix.info.country,$ESCINFO[ListItem.Country])</onload>
+  <onload>SetProperty(kodiflix.info.playcount,$ESCINFO[ListItem.PlayCount])</onload>
+  <controls>
+    <control type="button" id="8">
+	  <left>-100</left>
+	  <top>-100</top>
+	  <width>1</width>
+	  <height>1</height>
+      <texturefocus/>
+      <texturenofocus/>
+    </control>
+    <control type="image" id="56000">
+      <left>-3000</left>
+      <top>-3000</top>
+      <width>1</width>
+      <height>1</height>
+      <texture background="true">$INFO[Window.Property(kodiflix.info.fanart)]</texture>
+      <visible>false</visible>
+    </control>
+    <control type="group">
+      <visible>System.AddonIsEnabled(script.kodiflix.helper) + !String.IsEmpty(Window.Property(kodiflix.info.blurred)) + !Skin.HasSetting(flix_disable_background_blur) + !Player.HasMedia</visible>
+      <control type="image">
+        <fadetime>500</fadetime>
+        <animation effect="zoom" center="auto" end="102,102" time="0" condition="Integer.IsGreater(System.StereoscopicMode,0)">conditional</animation>
+        <depth>DepthBackground</depth>
+        <include>FullScreenDimensions</include>
+        <aspectratio>scale</aspectratio>
+		<texture colordiffuse="FF6E6E6E">$INFO[Window.Property(kodiflix.info.blurred)]</texture>
+      </control>
+    </control>
+    <control type="group">
+      <animation type="WindowOpen">
+        <effect type="fade" start="0" end="100" time="400" tween="sine" easing="inout" />
+      </animation>
+      <animation type="WindowClose">
+        <effect type="fade" start="100" end="0" time="400" tween="sine" easing="inout" />
+      </animation>
+      <animation effect="fade" start="100" end="0" time="200" condition="Window.IsActive(DialogSelect.xml) | Window.IsActive(FileBrowser.xml)">Conditional</animation>
+      <control type="image">
+        <include>FullScreenDimensions</include>
+        <aspectratio>stretch</aspectratio>
+        <fadetime>500</fadetime>
+        <animation effect="fade" time="400">VisibleChange</animation>
+        <texture background="true" colordiffuse="FF333333">$INFO[Window.Property(kodiflix.info.fanart)]</texture>
+        <visible>Skin.HasSetting(flix_disable_background_blur) | String.IsEmpty(Window.Property(kodiflix.info.blurred)) | !System.AddonIsEnabled(script.kodiflix.helper)</visible>
+      </control>
+      <control type="group">
+        <control type="list" id="20000">
+          <animation effect="slide" start="0,0" end="0,504" time="0" condition="Integer.IsEqual(Container(20000).NumItems,1)">Conditional</animation>
+          <animation effect="slide" start="0,0" end="0,468" time="0" condition="Integer.IsEqual(Container(20000).NumItems,2)">Conditional</animation>
+          <animation effect="slide" start="0,0" end="0,432" time="0" condition="Integer.IsEqual(Container(20000).NumItems,3)">Conditional</animation>
+          <animation effect="slide" start="0,0" end="0,396" time="0" condition="Integer.IsEqual(Container(20000).NumItems,4)">Conditional</animation>
+          <animation effect="slide" start="0,0" end="0,360" time="0" condition="Integer.IsEqual(Container(20000).NumItems,5)">Conditional</animation>
+          <animation effect="slide" start="0,0" end="0,324" time="0" condition="Integer.IsEqual(Container(20000).NumItems,6)">Conditional</animation>
+          <animation effect="slide" start="0,0" end="0,288" time="0" condition="Integer.IsEqual(Container(20000).NumItems,7)">Conditional</animation>
+          <animation effect="slide" start="0,0" end="0,252" time="0" condition="Integer.IsEqual(Container(20000).NumItems,8)">Conditional</animation>
+          <animation effect="slide" start="0,0" end="0,216" time="0" condition="Integer.IsGreater(Container(20000).NumItems,8)">Conditional</animation>
+          <right>50</right>
+          <top>0</top>
+          <width>370</width>
+          <height>1080</height>
+          <onleft condition="String.IsEqual(Container(20000).ListItem.Property(id),cast)">SetFocus(50,0)</onleft>
+          <onleft condition="String.IsEqual(Container(20000).ListItem.Property(id),moreinfo)">SetFocus(53,0)</onleft>
+          <onright>back</onright>
+          <itemlayout width="370" height="72">
+            <control type="label">
+              <left>65</left>
+              <height>70</height>
+              <width>305</width>
+              <aligny>center</aligny>
+              <font>font37</font>
+              <textcolor>grey</textcolor>
+              <label>$INFO[ListItem.Label]</label>
+              <shadowcolor>text_shadow</shadowcolor>
+            </control>
+          </itemlayout>
+          <focusedlayout width="370" height="72" infoupdate="300">
+            <control type="image">
+              <left>47</left>
+              <top>0</top>
+              <bottom>7</bottom>
+              <width>5</width>
+              <texture colordiffuse="FFFFFFFF">colors/white.png</texture>
+              <visible>Control.HasFocus(20000)</visible>
+            </control>
+            <control type="label">
+              <left>65</left>
+              <height>70</height>
+              <width>305</width>
+              <aligny>center</aligny>
+              <font>font52_title</font>
+              <textcolor>white</textcolor>
+              <label>$INFO[ListItem.Label]</label>
+              <scroll>true</scroll>
+              <scrollspeed>75</scrollspeed>
+              <shadowcolor>text_shadow</shadowcolor>
+            </control>
+          </focusedlayout>
+          <content>
+            <item>
+              <label>$VAR[VideoInfoPlayButtonLabelVar]</label>
+              <onclick>SendClick(8)</onclick>
+            </item>
+            <item>
+              <label>206</label>
+              <property name="id">cast</property>
+            </item>
+            <item>
+              <label>Info</label>
+              <property name="id">moreinfo</property>
+            </item>
+          </content>
+        </control>
+        <control type="image">
+          <animation effect="fade" start="0" end="100" time="300" delay="300">Visible</animation>
+          <animation effect="fade" start="100" end="0" time="300">Hidden</animation>
+          <width>520</width>
+          <height>780</height>
+          <top>160</top>
+          <bottom>0</bottom>
+          <left>120.5</left>
+          <aspectratio scalediffuse="false">scale</aspectratio>
+          <texture diffuse="masks/poster-big.png" fallback="DefaultMovies.png" colordiffuse="white">$INFO[Window.Property(kodiflix.info.poster)]</texture>
+          <bordersize>1</bordersize>
+          <bordertexture colordiffuse="FF5B5B5B" border="20" infill="false">masks/poster-big-border.png</bordertexture>
+          <visible>!String.IsEqual(Container(20000).ListItem.Property(id),cast)</visible>
+        </control>
+        <control type="group">
+          <visible>String.IsEmpty(Container(20000).ListItem.Property(id))</visible>
+          <animation effect="fade" start="0" end="100" time="300" delay="300">Visible</animation>
+          <animation effect="fade" start="100" end="0" time="300">Hidden</animation>
+          <top>160</top>
+          <left>670</left>
+          <bottom>160</bottom>
+          <right>460</right>
+          <control type="grouplist">
+            <left>12.5</left>
+            <width>780</width>
+            <top>-30</top>
+            <bottom>0</bottom>
+            <orientation>vertical</orientation>
+            <align>center</align>
+            <itemgap>7</itemgap>
+            <control type="image">
+              <!-- <width>780</width> -->
+              <height>233</height>
+              <texture colordiffuse="white" background="true">$INFO[Window.Property(kodiflix.info.clearlogo)]</texture>
+              <aspectratio align="center">keep</aspectratio>
+              <visible>!String.IsEmpty(Window.Property(kodiflix.info.clearlogo))</visible>
+            </control>
+            <control type="textbox">
+              <top>0</top>
+              <left>0</left>
+              <right>0</right>
+              <height>auto</height>
+              <font>font_MainMenu</font>
+              <textcolor>white</textcolor>
+              <align>center</align>
+              <aligny>center</aligny>
+              <label>[B]$INFO[Window.Property(kodiflix.info.title)][/B]</label>
+              <visible>String.IsEmpty(Window.Property(kodiflix.info.clearlogo))</visible>
+            </control>
+            <control type="textbox">
+              <visible>!String.IsEmpty(Window.Property(kodiflix.info.tagline))</visible>
+              <height max="180">auto</height>
+              <font>font32</font>
+              <textcolor>grey</textcolor>
+              <align>center</align>
+              <aligny>center</aligny>
+              <label>$INFO[Window.Property(kodiflix.info.tagline)]</label>
+            </control>
+            <control type="label">
+              <visible>!String.IsEmpty(Window.Property(kodiflix.info.genre))</visible>
+              <height>50</height>
+              <font>Font30</font>
+              <textcolor>grey</textcolor>
+              <align>center</align>
+              <aligny>center</aligny>
+              <label>[I]$INFO[Window.Property(kodiflix.info.genre)][/I]</label>
+            </control>
+            <include condition="!String.IsEmpty(Skin.String(valid_api_key))" content="HorizontalRatings">
+              <param name="align" value="center"/>
+            </include>
+            <control type="textbox">
+              <visible>!String.IsEmpty(Window.Property(kodiflix.info.plot))</visible>
+              <height max="370">auto</height>
+              <font>font32</font>
+              <textcolor>grey</textcolor>
+              <align>center</align>
+              <label>$INFO[Window.Property(kodiflix.info.plot)]</label>
+              <autoscroll delay="10000" time="4700" repeat="10000">Skin.HasSetting(autoscroll)</autoscroll>
+            </control>
+          </control>
+        </control>
+        <control type="group">
+          <visible>String.IsEqual(Container(20000).ListItem.Property(id),cast)</visible>
+          <animation effect="fade" start="0" end="100" time="300" delay="300">Visible</animation>
+          <animation effect="fade" start="100" end="0" time="300">Hidden</animation>
+          <left>120</left>
+          <width>1330</width>
+          <control type="image">
+            <width>520</width>
+            <height>780</height>
+            <top>160</top>
+            <bottom>160</bottom>
+            <left>580</left>
+            <aspectratio scalediffuse="false">scale</aspectratio>
+            <texture diffuse="masks/poster-big.png" colordiffuse="white">$INFO[Container(50).ListItem.Art(thumb)]</texture>
+            <bordersize>1</bordersize>
+            <fadetime>600</fadetime>
+            <bordertexture colordiffuse="FF5B5B5B" border="20" infill="false">masks/poster-big-border.png</bordertexture>
+          </control>
+          <control type="image">
+            <visible>Container(50).IsUpdating</visible>
+            <animation effect="fade" start="0" end="100" time="100" delay="2000" reversible="false">Visible</animation>
+            <width>120</width>
+            <aspectratio>keep</aspectratio>
+            <texture>loading.gif</texture>
+          </control>
+          <control type="list" id="50">
+            <onclick condition="System.AddonIsEnabled(script.embuary.info) + Control.HasFocus(50) + !$EXP[isSet]">RunScript(script.embuary.info,call=person,query='$ESCINFO[Container(50).ListItem.Label]')</onclick>
+            <onclick condition="System.HasAddon(script.embuary.info) + !System.AddonIsEnabled(script.embuary.info) + !$EXP[isSet]">EnableAddon(script.embuary.info)</onclick>
+            <onclick condition="!System.HasAddon(script.embuary.info) + !$EXP[isSet]">InstallAddon(script.embuary.info)</onclick>
+            <animation effect="fade" start="0" end="100" time="400">VisibleChange</animation>
+            <left>0</left>
+            <width>610</width>
+            <top>67</top>
+            <height>940</height>
+            <onright>20000</onright>
+            <itemlayout width="610" height="104">
+              <control type="label">
+                <left>24</left>
+                <top>10</top>
+                <width>560</width>
+                <height>42</height>
+                <font>font32</font>
+                <textcolor>white</textcolor>
+                <label>$INFO[ListItem.Label]</label>
+              </control>
+              <control type="label">
+                <left>24</left>
+                <top>52</top>
+                <width>560</width>
+                <height>36</height>
+                <font>font27</font>
+                <textcolor>grey</textcolor>
+                <label>$INFO[ListItem.Label2]</label>
+              </control>
+            </itemlayout>
+            <focusedlayout width="610" height="104">
+              <control type="image">
+                <left>0</left>
+                <top>8</top>
+                <width>5</width>
+                <height>88</height>
+                <texture colordiffuse="button_focus">colors/white.png</texture>
+              </control>
+              <control type="label">
+                <left>24</left>
+                <top>10</top>
+                <width>560</width>
+                <height>42</height>
+                <font>font32</font>
+                <textcolor>white</textcolor>
+                <label>$INFO[ListItem.Label]</label>
+                <scroll>true</scroll>
+              </control>
+              <control type="label">
+                <left>24</left>
+                <top>52</top>
+                <width>560</width>
+                <height>36</height>
+                <font>font27</font>
+                <textcolor>grey</textcolor>
+                <label>$INFO[ListItem.Label2]</label>
+                <scroll>true</scroll>
+              </control>
+            </focusedlayout>
+          </control>
+          <include content="UpDownArrows">
+            <param name="container_id" value="50" />
+            <param name="posx" value="222" />
+            <param name="up_posy" value="30" />
+            <param name="down_posy" value="1000" />
+          </include>
+        </control>
+        <control type="group">
+          <visible>String.IsEqual(Container(20000).ListItem.Property(id),moreinfo)</visible>
+          <animation effect="fade" start="0" end="100" time="300" delay="300">Visible</animation>
+          <animation effect="fade" start="100" end="0" time="300">Hidden</animation>
+          <left>670</left>
+          <width>780</width>
+          <control type="image">
+            <visible>Container(53).IsUpdating</visible>
+            <animation effect="fade" start="0" end="100" time="100" delay="2000" reversible="false">Visible</animation>
+            <width>120</width>
+            <aspectratio>keep</aspectratio>
+            <texture>loading.gif</texture>
+          </control>
+          <control type="list" id="53">
+            <animation effect="fade" start="0" end="100" time="400">VisibleChange</animation>
+            <animation effect="slide" start="0,0" end="0,488" time="0" condition="Integer.IsEqual(Container(53).NumItems,1)">Conditional</animation>
+            <animation effect="slide" start="0,0" end="0,436" time="0" condition="Integer.IsEqual(Container(53).NumItems,2)">Conditional</animation>
+            <animation effect="slide" start="0,0" end="0,384" time="0" condition="Integer.IsEqual(Container(53).NumItems,3)">Conditional</animation>
+            <animation effect="slide" start="0,0" end="0,332" time="0" condition="Integer.IsEqual(Container(53).NumItems,4)">Conditional</animation>
+            <animation effect="slide" start="0,0" end="0,280" time="0" condition="Integer.IsEqual(Container(53).NumItems,5)">Conditional</animation>
+            <animation effect="slide" start="0,0" end="0,228" time="0" condition="Integer.IsEqual(Container(53).NumItems,6)">Conditional</animation>
+            <animation effect="slide" start="0,0" end="0,176" time="0" condition="Integer.IsEqual(Container(53).NumItems,7)">Conditional</animation>
+            <animation effect="slide" start="0,0" end="0,124" time="0" condition="Integer.IsEqual(Container(53).NumItems,8)">Conditional</animation>
+            <animation effect="slide" start="0,0" end="0,72" time="0" condition="Integer.IsEqual(Container(53).NumItems,9)">Conditional</animation>
+            <animation effect="slide" start="0,0" end="0,20" time="0" condition="Integer.IsEqual(Container(53).NumItems,10)">Conditional</animation>
+            <left>0</left>
+            <width>780</width>
+            <top>0</top>
+            <height>1080</height>
+            <onright>20000</onright>
+            <itemlayout width="780" height="104">
+              <control type="label">
+                <left>24</left>
+                <top>10</top>
+                <width>730</width>
+                <height>38</height>
+                <font>font27</font>
+                <textcolor>grey</textcolor>
+                <label>$INFO[ListItem.Label]</label>
+              </control>
+              <control type="label">
+                <left>24</left>
+                <top>48</top>
+                <width>730</width>
+                <height>44</height>
+                <font>font32</font>
+                <textcolor>white</textcolor>
+                <label>$INFO[ListItem.Label2]</label>
+              </control>
+            </itemlayout>
+            <focusedlayout width="780" height="104">
+              <control type="image">
+                <left>0</left>
+                <top>8</top>
+                <width>5</width>
+                <height>88</height>
+                <texture colordiffuse="button_focus">colors/white.png</texture>
+              </control>
+              <control type="label">
+                <left>24</left>
+                <top>10</top>
+                <width>730</width>
+                <height>38</height>
+                <font>font27</font>
+                <textcolor>grey</textcolor>
+                <label>$INFO[ListItem.Label]</label>
+              </control>
+              <control type="label">
+                <left>24</left>
+                <top>48</top>
+                <width>730</width>
+                <height>44</height>
+                <font>font32</font>
+                <textcolor>white</textcolor>
+                <label>$INFO[ListItem.Label2]</label>
+                <scroll>true</scroll>
+              </control>
+            </focusedlayout>
+            <content>
+              <item>
+                <label>$LOCALIZE[20339]</label>
+                <label2>$INFO[Window.Property(kodiflix.info.director)]</label2>
+                <onclick condition="System.HasAddon(script.embuary.info) + !System.AddonIsEnabled(script.embuary.info) + !$EXP[isSet]">EnableAddon(script.embuary.info)</onclick>
+                <onclick condition="!System.HasAddon(script.embuary.info) + !$EXP[isSet]">InstallAddon(script.embuary.info)</onclick>
+                <onclick condition="System.AddonIsEnabled(script.embuary.info)">RunScript(script.embuary.info,call=person,query='$ESCINFO[Window.Property(kodiflix.info.director)]')</onclick>
+                <visible>!String.IsEmpty(Window.Property(kodiflix.info.director))</visible>
+              </item>
+              <item>
+                <label>$LOCALIZE[20417]</label>
+                <label2>$INFO[Window.Property(kodiflix.info.writer)]</label2>
+                <onclick condition="System.HasAddon(script.embuary.info) + !System.AddonIsEnabled(script.embuary.info) + !$EXP[isSet]">EnableAddon(script.embuary.info)</onclick>
+                <onclick condition="!System.HasAddon(script.embuary.info) + !$EXP[isSet]">InstallAddon(script.embuary.info)</onclick>
+                <onclick condition="System.AddonIsEnabled(script.embuary.info)">RunScript(script.embuary.info,call=person,query='$ESCINFO[Window.Property(kodiflix.info.writer)]')</onclick>
+                <visible>!String.IsEmpty(Window.Property(kodiflix.info.writer))</visible>
+              </item>
+              <item>
+                <label>$LOCALIZE[515]</label>
+                <label2>$INFO[Window.Property(kodiflix.info.genre)]</label2>
+                <visible>!String.IsEmpty(Window.Property(kodiflix.info.genre))</visible>
+              </item>
+              <item>
+                <label>$LOCALIZE[29909]</label>
+                <label2>$INFO[Window.Property(kodiflix.info.studio)]</label2>
+                <visible>!String.IsEmpty(Window.Property(kodiflix.info.studio))</visible>
+              </item>
+              <item>
+                <label>$LOCALIZE[20457]</label>
+                <label2>$INFO[Window.Property(kodiflix.info.set)]</label2>
+                <visible>!String.IsEmpty(Window.Property(kodiflix.info.set))</visible>
+              </item>
+              <item>
+                <label>$LOCALIZE[126]</label>
+                <label2>$INFO[Window.Property(kodiflix.info.status)]</label2>
+                <visible>!String.IsEmpty(Window.Property(kodiflix.info.status))</visible>
+              </item>
+              <item>
+                <label>$LOCALIZE[21875]</label>
+                <label2>$INFO[Window.Property(kodiflix.info.country)]</label2>
+                <visible>!String.IsEmpty(Window.Property(kodiflix.info.country))</visible>
+              </item>
+              <item>
+                <label>$LOCALIZE[576]</label>
+                <label2>$INFO[Window.Property(kodiflix.info.playcount)]</label2>
+                <visible>!String.IsEmpty(Window.Property(kodiflix.info.playcount))</visible>
+              </item>
+            </content>
+          </control>
+          <include content="UpDownArrows">
+            <param name="container_id" value="53" />
+            <param name="posx" value="222" />
+            <param name="up_posy" value="30" />
+            <param name="down_posy" value="1000" />
+          </include>
+        </control>
+      </control>
+    </control>
+  </controls>
+</window>

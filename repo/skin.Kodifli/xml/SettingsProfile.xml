@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window>
+	<defaultcontrol always="true">9000</defaultcontrol>
+	<backgroundcolor>background</backgroundcolor>
+	<controls>
+		<include>DefaultBackground</include>
+		<control type="image">
+			<visible>Skin.HasSetting(KodiflixSettingsPopupStyle)</visible>
+			<depth>DepthBackground</depth>
+			<include>FullScreenDimensions</include>
+			<aspectratio>scale</aspectratio>
+			<texture>$VAR[KodiflixSettingsBackgroundVar]</texture>
+		</control>
+		<control type="multiimage">
+			<depth>DepthBackground</depth>
+			<include>FullScreenDimensions</include>
+			<aspectratio>scale</aspectratio>
+			<imagepath background="true" colordiffuse="FF555555">$INFO[Skin.String(HomeFanart.path)]settings$INFO[Skin.String(HomeFanart.ext)]</imagepath>
+			<visible>!Player.HasMedia + !String.IsEmpty(Skin.String(HomeFanart.path))</visible>
+		</control>
+		<control type="group">
+			<visible>Skin.HasSetting(KodiflixSettingsPopupStyle)</visible>
+			<control type="image">
+				<left>60</left>
+				<top>180</top>
+				<width>1800</width>
+				<height>720</height>
+				<texture border="32" colordiffuse="700F1415">kodiflix/settings-panel-rounded.png</texture>
+			</control>
+			<control type="image">
+				<left>570</left>
+				<top>225</top>
+				<width>1</width>
+				<height>630</height>
+				<texture colordiffuse="70FFFFFF">colors/white.png</texture>
+			</control>
+		</control>
+		<control type="group" id="9100">
+			<include>Kodiflix_SettingsTextFade</include>
+			<left>472</left>
+			<animation effect="slide" end="98,92" time="0" condition="Skin.HasSetting(KodiflixSettingsPopupStyle)">Conditional</animation>
+			<control type="image">
+				<top>130</top>
+				<right>0</right>
+				<height>3</height>
+				<texture colordiffuse="button_focus" border="2">dialogs/separator-grey.png</texture>
+				<visible>!Skin.HasSetting(KodiflixSettingsPopupStyle)</visible>
+			</control>
+			<control type="image">
+				<bottom>134</bottom>
+				<right>0</right>
+				<height>3</height>
+				<texture colordiffuse="button_focus" border="2">dialogs/separator-grey.png</texture>
+				<visible>!Skin.HasSetting(KodiflixSettingsPopupStyle)</visible>
+			</control>
+			<control type="panel" id="2">
+				<top>148</top>
+				<left>30</left>
+				<visible>Container(9000).Hasfocus(2)</visible>
+				<width>1290</width>
+				<height>630</height>
+				<onleft>9000</onleft>
+				<onright>9000</onright>
+				<onup>2</onup>
+				<ondown>2</ondown>
+				<scrolltime>200</scrolltime>
+				<itemlayout height="390" width="354">
+					<control type="image">
+						<top>5</top>
+						<width>320</width>
+						<height>380</height>
+						<texture>dialogs/dialog-bg-nobo.png</texture>
+						<bordertexture border="21" infill="false">overlays/shadow.png</bordertexture>
+						<bordersize>20</bordersize>
+					</control>
+					<control type="image">
+						<left>51</left>
+						<top>38</top>
+						<width>215</width>
+						<height>215</height>
+						<aspectratio>scale</aspectratio>
+						<texture fallback="DefaultUser.png">$INFO[Listitem.Icon]</texture>
+					</control>
+					<control type="label">
+						<left>10</left>
+						<top>255</top>
+						<width>305</width>
+						<height>100</height>
+						<align>center</align>
+						<aligny>top</aligny>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+					<control type="label">
+						<left>10</left>
+						<top>290</top>
+						<width>305</width>
+						<height>100</height>
+						<font>font10</font>
+						<align>center</align>
+						<aligny>top</aligny>
+						<label>$LOCALIZE[31029]:</label>
+						<visible>!String.IsEqual(Listitem.Label,$LOCALIZE[20058])</visible>
+					</control>
+					<control type="label">
+						<left>10</left>
+						<top>321</top>
+						<width>305</width>
+						<height>100</height>
+						<font>font10</font>
+						<align>center</align>
+						<aligny>top</aligny>
+						<label fallback="13170">$INFO[ListItem.Label2]</label>
+						<visible>!String.Contains(Listitem.Label,$LOCALIZE[20058])</visible>
+					</control>
+				</itemlayout>
+				<focusedlayout height="390" width="354">
+					<control type="group">
+						<animation effect="zoom" start="100" end="105" time="200" tween="sine" easing="inout" center="160,190">Focus</animation>
+						<animation effect="zoom" start="105" end="100" time="200" tween="sine" easing="inout" center="160,190">UnFocus</animation>
+						<control type="image">
+							<top>5</top>
+							<width>320</width>
+							<height>380</height>
+							<texture>dialogs/dialog-bg-nobo.png</texture>
+							<bordertexture border="21" infill="false">overlays/shadow.png</bordertexture>
+							<bordersize>20</bordersize>
+						</control>
+						<control type="image">
+							<top>5</top>
+							<width>320</width>
+							<height>380</height>
+							<texture colordiffuse="button_focus">colors/grey.png</texture>
+							<bordersize>20</bordersize>
+							<include>Animation_FocusTextureFade</include>
+						</control>
+						<control type="image">
+							<left>51</left>
+							<top>38</top>
+							<width>215</width>
+							<height>215</height>
+							<aspectratio>scale</aspectratio>
+							<texture fallback="DefaultUser.png">$INFO[Listitem.Icon]</texture>
+						</control>
+						<control type="label">
+							<left>10</left>
+							<top>255</top>
+							<width>305</width>
+							<height>100</height>
+							<align>center</align>
+							<aligny>top</aligny>
+							<label>$INFO[ListItem.Label]</label>
+						</control>
+						<control type="label">
+							<left>10</left>
+							<top>290</top>
+							<width>305</width>
+							<height>100</height>
+							<font>font10</font>
+							<align>center</align>
+							<aligny>top</aligny>
+							<label>$LOCALIZE[31029]:</label>
+							<visible>!String.Contains(Listitem.Label,$LOCALIZE[20058])</visible>
+						</control>
+						<control type="label">
+							<left>10</left>
+							<top>321</top>
+							<width>305</width>
+							<height>100</height>
+							<font>font10</font>
+							<align>center</align>
+							<aligny>top</aligny>
+							<label fallback="13170">$INFO[ListItem.Label2]</label>
+							<visible>!String.Contains(Listitem.Label,$LOCALIZE[20058])</visible>
+						</control>
+					</control>
+				</focusedlayout>
+			</control>
+			<control type="grouplist" id="9001">
+				<visible>Container(9000).Hasfocus(1)</visible>
+				<width>1290</width>
+				<height>630</height>
+				<top>163</top>
+				<onleft>9000</onleft>
+				<onright>9000</onright>
+				<onup>9001</onup>
+				<ondown>9001</ondown>
+				<control type="radiobutton" id="4">
+					<label>$LOCALIZE[31057]</label>
+					<include>DefaultSettingButton</include>
+				</control>
+				<control type="button" id="5">
+					<label>$LOCALIZE[31058]</label>
+					<label2>[B]$INFO[System.ProfileAutoLogin][/B]</label2>
+					<include>DefaultSettingButton</include>
+					<enable>!Window.IsVisible(ProfileSettings) + !System.HasLoginScreen</enable>
+				</control>
+			</control>
+		</control>
+		<control type="group">
+			<depth>DepthContentPanel</depth>
+			<animation effect="slide" end="90,95" time="0" condition="Skin.HasSetting(KodiflixSettingsPopupStyle)">Conditional</animation>
+			<include>Kodiflix_SettingsTextFade</include>
+			<include content="ContentPanel" condition="!Skin.HasSetting(KodiflixSettingsPopupStyle)">
+				<param name="width" value="530" />
+			</include>
+			<control type="list" id="9000">
+				<left>0</left>
+				<top>130</top>
+				<width>470</width>
+				<height>630</height>
+				<onleft>9100</onleft>
+				<onright>9100</onright>
+				<onup>9000</onup>
+				<ondown>9000</ondown>
+				<scrolltime>300</scrolltime>
+				<itemlayout height="85" width="470">
+					<control type="label">
+						<left>30</left>
+						<right>30</right>
+						<bottom>0</bottom>
+						<label>$INFO[ListItem.Label]</label>
+						<font>font37</font>
+						<aligny>center</aligny>
+					</control>
+				</itemlayout>
+				<focusedlayout height="85" width="470">
+					<control type="image">
+						<visible>!Skin.HasSetting(KodiflixSettingsSquareFocus)</visible>
+						<right>0</right>
+						<bottom>0</bottom>
+						<texture border="24" colordiffuse="70FFFFFF">kodiflix/settings-panel-rounded.png</texture>
+						<animation effect="fade" start="100" end="50" time="40" condition="!Control.HasFocus(9000)">Conditional</animation>
+					</control>
+<control type="image">
+						<visible>Skin.HasSetting(KodiflixSettingsSquareFocus)</visible>
+						<right>0</right>
+						<bottom>0</bottom>
+						<texture border="24" colordiffuse="70FFFFFF">kodiflix/settings-panel-square.png</texture>
+						<animation effect="fade" start="100" end="50" time="40" condition="!Control.HasFocus(9000)">Conditional</animation>
+					</control>
+					<control type="label">
+						<left>30</left>
+						<right>30</right>
+						<bottom>0</bottom>
+						<label>$INFO[ListItem.Label]</label>
+						<font>font37</font>
+						<aligny>center</aligny>
+					</control>
+				</focusedlayout>
+				<content>
+					<item id="1">
+						<label>$LOCALIZE[128]</label>
+						<onclick>noop</onclick>
+						<icon></icon>
+					</item>
+					<item id="2">
+						<label>$LOCALIZE[13200]</label>
+						<onclick>noop</onclick>
+						<icon></icon>
+					</item>
+				</content>
+			</control>
+		</control>
+		<include content="TopBar" condition="!Skin.HasSetting(KodiflixSettingsPopupStyle)">
+			<param name="breadcrumbs_label" value="$LOCALIZE[10034]" />
+		</include>
+		<include condition="!Skin.HasSetting(KodiflixSettingsPopupStyle)">BottomBar</include>
+	</controls>
+</window>

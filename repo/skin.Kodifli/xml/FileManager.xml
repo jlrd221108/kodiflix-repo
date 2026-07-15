@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">20</defaultcontrol>
+	<controls>
+		<include>DefaultBackground</include>
+		<control type="image">
+			<visible>Skin.HasSetting(KodiflixSettingsPopupStyle)</visible>
+			<depth>DepthBackground</depth>
+			<include>FullScreenDimensions</include>
+			<aspectratio>scale</aspectratio>
+			<texture>$VAR[KodiflixSettingsBackgroundVar]</texture>
+		</control>
+		<control type="image">
+			<description>Dialog Header image</description>
+			<visible>!Skin.HasSetting(KodiflixSettingsPopupStyle)</visible>
+			<centerleft>50%</centerleft>
+			<centertop>50%</centertop>
+			<width>68</width>
+			<height>68</height>
+			<texture colordiffuse="button_focus" border="2">icons/file-manager/left-right.png</texture>
+			<animation effect="fade" start="0" end="100" time="300" delay="100">WindowOpen</animation>
+			<animation effect="fade" start="100" end="0" time="160">WindowClose</animation>
+		</control>
+		<control type="group">
+			<left>0</left>
+			<animation effect="slide" end="60,0" time="0" condition="Skin.HasSetting(KodiflixSettingsPopupStyle)">Conditional</animation>
+			<include>Kodiflix_SettingsTextFade</include>
+			<control type="image">
+				<visible>Skin.HasSetting(KodiflixSettingsPopupStyle)</visible>
+				<left>0</left>
+				<top>180</top>
+				<width>812</width>
+				<height>720</height>
+				<texture border="32" colordiffuse="700F1415">kodiflix/settings-panel-rounded.png</texture>
+			</control>
+			<include content="ContentPanel" condition="!Skin.HasSetting(KodiflixSettingsPopupStyle)">
+				<param name="width" value="872" />
+			</include>
+			<include content="FileManagerPanel">
+				<param name="list_id" value="20" />
+				<param name="scrollbar_id" value="60" />
+				<param name="onleft_id" value="20" />
+				<param name="onright_id" value="21" />
+				<param name="width" value="812" />
+				<param name="list_top" value="315" />
+				<param name="list_bottom" value="315" />
+				<param name="focusposition" value="2" />
+				<param name="mirror" value="false" />
+			</include>
+			<control type="scrollbar" id="60">
+				<enable>!Skin.HasSetting(KodiflixSettingsPopupStyle)</enable>
+				<top>315</top>
+				<left>0</left>
+				<width>12</width>
+				<bottom>315</bottom>
+				<onleft>20</onleft>
+				<onright>20</onright>
+				<orientation>vertical</orientation>
+				<animation effect="zoom" end="50,100" time="300" tween="sine" center="0,0" easing="inout" condition="!Control.HasFocus(60)">conditional</animation>
+				<texturesliderbackground />
+				<visible>!Skin.HasSetting(KodiflixSettingsPopupStyle)</visible>
+			</control>
+		</control>
+		<control type="group">
+			<width>818</width>
+			<right>0</right>
+			<animation effect="slide" end="-60,0" time="0" condition="Skin.HasSetting(KodiflixSettingsPopupStyle)">Conditional</animation>
+			<include>Kodiflix_SettingsTextFade</include>
+			<control type="image">
+				<visible>Skin.HasSetting(KodiflixSettingsPopupStyle)</visible>
+				<left>0</left>
+				<top>180</top>
+				<width>817</width>
+				<height>720</height>
+				<texture border="32" colordiffuse="700F1415">kodiflix/settings-panel-rounded.png</texture>
+			</control>
+			<include content="ContentPanel" condition="!Skin.HasSetting(KodiflixSettingsPopupStyle)">
+				<param name="width" value="878" />
+				<param name="flipx" value="true" />
+				<param name="left" value="-20" />
+			</include>
+			<include content="FileManagerPanelMirror">
+				<param name="list_id" value="21" />
+				<param name="scrollbar_id" value="61" />
+				<param name="onleft_id" value="20" />
+				<param name="onright_id" value="21" />
+				<param name="width" value="817" />
+				<param name="list_top" value="315" />
+				<param name="list_bottom" value="315" />
+				<param name="focusposition" value="2" />
+				<param name="mirror" value="true" />
+			</include>
+			<control type="scrollbar" id="61">
+				<enable>!Skin.HasSetting(KodiflixSettingsPopupStyle)</enable>
+				<left>800</left>
+				<animation effect="slide" end="5,0" time="0" condition="true">Conditional</animation>
+				<top>315</top>
+				<width>12</width>
+				<bottom>315</bottom>
+				<onleft>21</onleft>
+				<onright>21</onright>
+				<animation effect="zoom" end="50,100" time="300" tween="sine" center="812,0" easing="inout" condition="!Control.HasFocus(61)">conditional</animation>
+				<texturesliderbackground />
+				<orientation>vertical</orientation>
+				<visible>!Skin.HasSetting(KodiflixSettingsPopupStyle)</visible>
+			</control>
+		</control>
+		<include content="TopBar" condition="!Skin.HasSetting(KodiflixSettingsPopupStyle)">
+			<param name="breadcrumbs_label" value="$LOCALIZE[7]" />
+		</include>
+		<include condition="!Skin.HasSetting(KodiflixSettingsPopupStyle)">BottomBar</include>
+		<control type="group">
+			<visible>!Skin.HasSetting(KodiflixSettingsPopupStyle)</visible>
+			<bottom>0</bottom>
+			<height>65</height>
+			<animation effect="fade" start="0" end="100" time="400">WindowOpen</animation>
+			<animation effect="fade" start="100" end="0" time="300">WindowClose</animation>
+			<control type="label">
+				<right>380</right>
+				<width>400</width>
+				<height>48</height>
+				<aligny>center</aligny>
+				<shadowcolor>text_shadow</shadowcolor>
+				<label>$INFO[Container(21).CurrentItem,, / ]$INFO[Container(21).NumItems]</label>
+			</control>
+			<control type="label" id="102">
+				<right>40</right>
+				<width>600</width>
+				<height>48</height>
+				<font>font30_title</font>
+				<align>right</align>
+				<aligny>center</aligny>
+				<label>$PARAM[header_label]</label>
+				<haspath>true</haspath>
+				<shadowcolor>black</shadowcolor>
+			</control>
+			<control type="label">
+				<left>380</left>
+				<width>400</width>
+				<height>48</height>
+				<aligny>center</aligny>
+				<align>right</align>
+				<shadowcolor>text_shadow</shadowcolor>
+				<label>$INFO[Container(20).CurrentItem,, / ]$INFO[Container(20).NumItems]</label>
+			</control>
+			<control type="label" id="101">
+				<left>40</left>
+				<width>600</width>
+				<height>48</height>
+				<font>font30_title</font>
+				<aligny>center</aligny>
+				<label>$PARAM[header_label]</label>
+				<haspath>true</haspath>
+				<shadowcolor>black</shadowcolor>
+			</control>
+		</control>
+	</controls>
+</window>

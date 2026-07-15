@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window type="dialog" id="1111">
+	<onload condition="String.IsEmpty(Skin.String(Kodiflix.BlurRadius))">Skin.SetString(Kodiflix.BlurRadius,30)</onload>
+	<onload condition="String.IsEmpty(Skin.String(Kodiflix.BlurSaturation))">Skin.SetString(Kodiflix.BlurSaturation,1.5)</onload>
+	<onload condition="String.IsEqual(Skin.String(Kodiflix.BlurRadius),20)">Skin.SetString(Kodiflix.BlurRadius,15)</onload>
+	<onload condition="String.IsEqual(Skin.String(Kodiflix.BlurRadius),40) | String.IsEqual(Skin.String(Kodiflix.BlurRadius),50)">Skin.SetString(Kodiflix.BlurRadius,60)</onload>
+	<onload condition="String.IsEqual(Skin.String(Kodiflix.BlurSaturation),1.0)">Skin.SetString(Kodiflix.BlurSaturation,0.35)</onload>
+	<onload condition="String.IsEqual(Skin.String(Kodiflix.BlurSaturation),2.0)">Skin.SetString(Kodiflix.BlurSaturation,3.0)</onload>
+	<onload condition="String.IsEmpty(Skin.String(Kodiflix.AgeRatingStyle))">Skin.SetString(Kodiflix.AgeRatingStyle,Legacy)</onload>
+	<onload condition="String.IsEmpty(Skin.String(Kodiflix.AgeRatingPosition))">Skin.SetString(Kodiflix.AgeRatingPosition,Center)</onload>
+	<defaultcontrol always="true">5000</defaultcontrol>
+	<include>Animation_DialogPopupOpenClose</include>
+	<controls>
+		<control type="group">
+			<centerleft>50%</centerleft>
+			<width>820</width>
+			<centertop>50%</centertop>
+			<height>620</height>
+			<include content="DialogBackgroundCommons">
+				<param name="width" value="820" />
+				<param name="height" value="620" />
+				<param name="header_label" value="View customisation" />
+				<param name="header_id" value="" />
+			</include>
+			<control type="group">
+				<left>0</left>
+				<top>76</top>
+				<control type="grouplist" id="5000">
+					<width>820</width>
+					<height>544</height>
+					<itemgap>8</itemgap>
+					<onup>5000</onup>
+					<ondown>5000</ondown>
+					<onback>Dialog.Close(1111)</onback>
+					<orientation>vertical</orientation>
+					<control type="radiobutton" id="5001">
+						<width>820</width>
+						<include>FlixCustomiseSettingButton</include>
+						<label>Background blur</label>
+						<onclick>Skin.ToggleSetting(flix_disable_background_blur)</onclick>
+						<selected>!Skin.HasSetting(flix_disable_background_blur)</selected>
+					</control>
+					<control type="button" id="5002">
+						<width>820</width>
+						<include>FlixCustomiseSubSettingButton</include>
+						<label>Blur strength</label>
+						<label2>[B]$VAR[FlixBlurStrengthLabelVar][/B]</label2>
+						<onclick condition="String.IsEqual(Skin.String(Kodiflix.BlurRadius),60)">Skin.SetString(Kodiflix.BlurRadius,5)</onclick>
+						<onclick condition="String.IsEqual(Skin.String(Kodiflix.BlurRadius),30)">Skin.SetString(Kodiflix.BlurRadius,60)</onclick>
+						<onclick condition="String.IsEqual(Skin.String(Kodiflix.BlurRadius),15)">Skin.SetString(Kodiflix.BlurRadius,30)</onclick>
+						<onclick condition="String.IsEqual(Skin.String(Kodiflix.BlurRadius),5)">Skin.SetString(Kodiflix.BlurRadius,15)</onclick>
+						<visible>!Skin.HasSetting(flix_disable_background_blur)</visible>
+					</control>
+					<control type="button" id="5003">
+						<width>820</width>
+						<include>FlixCustomiseSubSettingButton</include>
+						<label>Blur colour</label>
+						<label2>[B]$VAR[FlixBlurColourLabelVar][/B]</label2>
+						<onclick condition="String.IsEqual(Skin.String(Kodiflix.BlurSaturation),3.0)">Skin.SetString(Kodiflix.BlurSaturation,0.35)</onclick>
+						<onclick condition="String.IsEqual(Skin.String(Kodiflix.BlurSaturation),1.5)">Skin.SetString(Kodiflix.BlurSaturation,3.0)</onclick>
+						<onclick condition="String.IsEqual(Skin.String(Kodiflix.BlurSaturation),0.35)">Skin.SetString(Kodiflix.BlurSaturation,1.5)</onclick>
+						<visible>!Skin.HasSetting(flix_disable_background_blur)</visible>
+					</control>
+					<control type="button" id="5009">
+						<width>820</width>
+						<include>FlixCustomiseSubSettingButton</include>
+						<label>Clear blur cache</label>
+						<onclick>RunScript(script.kodiflix.helper,action=clear_cache)</onclick>
+						<visible>!Skin.HasSetting(flix_disable_background_blur) + System.AddonIsEnabled(script.kodiflix.helper)</visible>
+					</control>
+					<control type="radiobutton" id="5005">
+						<width>820</width>
+						<include>FlixCustomiseSettingButton</include>
+						<label>Progress indicators</label>
+						<onclick>Skin.ToggleSetting(flix_hide_movie_progress)</onclick>
+						<selected>!Skin.HasSetting(flix_hide_movie_progress)</selected>
+					</control>
+					<control type="button" id="5007">
+						<width>820</width>
+						<include>FlixCustomiseSettingButton</include>
+						<label>Age rating style</label>
+						<onclick condition="String.IsEqual(Skin.String(Kodiflix.AgeRatingStyle),Legacy)">Skin.SetString(Kodiflix.AgeRatingStyle,Pill)</onclick>
+						<onclick condition="String.IsEqual(Skin.String(Kodiflix.AgeRatingStyle),New)">Skin.SetString(Kodiflix.AgeRatingStyle,Legacy)</onclick>
+						<onclick condition="String.IsEqual(Skin.String(Kodiflix.AgeRatingStyle),Pill)">Skin.SetString(Kodiflix.AgeRatingStyle,New)</onclick>
+					</control>
+					<control type="button" id="5008">
+						<width>820</width>
+						<include>FlixCustomiseSettingButton</include>
+						<label>Age rating position</label>
+						<label2>[B]$VAR[FlixAgeRatingPositionLabelVar][/B]</label2>
+						<onclick condition="String.IsEqual(Skin.String(Kodiflix.AgeRatingPosition),Right)">Skin.SetString(Kodiflix.AgeRatingPosition,Left)</onclick>
+						<onclick condition="String.IsEqual(Skin.String(Kodiflix.AgeRatingPosition),Center)">Skin.SetString(Kodiflix.AgeRatingPosition,Right)</onclick>
+						<onclick condition="String.IsEqual(Skin.String(Kodiflix.AgeRatingPosition),Left)">Skin.SetString(Kodiflix.AgeRatingPosition,Center)</onclick>
+					</control>
+					<control type="button" id="5010">
+						<width>820</width>
+						<include>FlixCustomiseSettingButton</include>
+						<textcolor>FFFF6666</textcolor>
+						<focusedcolor>FFFF8A8A</focusedcolor>
+						<label>Reset Flix customisation</label>
+						<onclick>ActivateWindow(1112)</onclick>
+					</control>
+				</control>
+				<!-- Decorative separators sit outside the grouplist so they cannot trap focus. -->
+				<control type="image">
+					<left>32</left>
+					<right>32</right>
+					<top>249</top>
+					<height>1</height>
+					<texture colordiffuse="24FFFFFF">colors/white.png</texture>
+					<visible>!Skin.HasSetting(flix_disable_background_blur)</visible>
+				</control>
+				<control type="image">
+					<left>32</left>
+					<right>32</right>
+					<top>69</top>
+					<height>1</height>
+					<texture colordiffuse="24FFFFFF">colors/white.png</texture>
+					<visible>Skin.HasSetting(flix_disable_background_blur)</visible>
+				</control>
+				<control type="image">
+					<left>32</left>
+					<right>32</right>
+					<top>329</top>
+					<height>1</height>
+					<texture colordiffuse="24FFFFFF">colors/white.png</texture>
+					<visible>!Skin.HasSetting(flix_disable_background_blur)</visible>
+				</control>
+				<control type="image">
+					<left>32</left>
+					<right>32</right>
+					<top>149</top>
+					<height>1</height>
+					<texture colordiffuse="24FFFFFF">colors/white.png</texture>
+					<visible>Skin.HasSetting(flix_disable_background_blur)</visible>
+				</control>
+				<!-- Separate the destructive reset action from regular preferences. -->
+				<control type="image">
+					<left>32</left>
+					<right>32</right>
+					<top>469</top>
+					<height>1</height>
+					<texture colordiffuse="24FFFFFF">colors/white.png</texture>
+					<visible>!Skin.HasSetting(flix_disable_background_blur)</visible>
+				</control>
+				<control type="image">
+					<left>32</left>
+					<right>32</right>
+					<top>289</top>
+					<height>1</height>
+					<texture colordiffuse="24FFFFFF">colors/white.png</texture>
+					<visible>Skin.HasSetting(flix_disable_background_blur)</visible>
+				</control>
+				<!-- Live age-rating style preview aligned with option 5007. -->
+				<control type="group">
+					<top>148</top>
+					<width>820</width>
+					<height>66</height>
+					<animation effect="slide" end="0,180" time="0" condition="!Skin.HasSetting(flix_disable_background_blur)">Conditional</animation>
+					<control type="grouplist">
+						<left>508</left>
+						<top>13</top>
+						<width>280</width>
+						<height>40</height>
+						<orientation>horizontal</orientation>
+						<itemgap>8</itemgap>
+						<visible>String.IsEmpty(Skin.String(Kodiflix.AgeRatingStyle)) | String.IsEqual(Skin.String(Kodiflix.AgeRatingStyle),Pill)</visible>
+						<control type="group">
+							<width>40</width>
+							<height>40</height>
+							<control type="image">
+								<width>40</width>
+								<height>40</height>
+								<texture border="8">special://skin/extras/flix-pill-bg.png</texture>
+							</control>
+							<control type="label">
+								<width>40</width>
+								<height>40</height>
+								<align>center</align>
+								<aligny>center</aligny>
+								<font>font_flag</font>
+								<label>[B]U[/B]</label>
+							</control>
+						</control>
+						<control type="group">
+							<width>40</width>
+							<height>40</height>
+							<control type="image">
+								<width>40</width>
+								<height>40</height>
+								<texture border="8">special://skin/extras/flix-pill-bg.png</texture>
+							</control>
+							<control type="label">
+								<width>40</width>
+								<height>40</height>
+								<align>center</align>
+								<aligny>center</aligny>
+								<font>font_flag</font>
+								<label>[B]PG[/B]</label>
+							</control>
+						</control>
+						<control type="group">
+							<width>40</width>
+							<height>40</height>
+							<control type="image">
+								<width>40</width>
+								<height>40</height>
+								<texture border="8">special://skin/extras/flix-pill-bg.png</texture>
+							</control>
+							<control type="label">
+								<width>40</width>
+								<height>40</height>
+								<align>center</align>
+								<aligny>center</aligny>
+								<font>font_flag</font>
+								<label>[B]12[/B]</label>
+							</control>
+						</control>
+						<control type="group">
+							<width>40</width>
+							<height>40</height>
+							<control type="image">
+								<width>40</width>
+								<height>40</height>
+								<texture border="8">special://skin/extras/flix-pill-bg.png</texture>
+							</control>
+							<control type="label">
+								<width>40</width>
+								<height>40</height>
+								<align>center</align>
+								<aligny>center</aligny>
+								<font>font_flag</font>
+								<label>[B]12A[/B]</label>
+							</control>
+						</control>
+						<control type="group">
+							<width>40</width>
+							<height>40</height>
+							<control type="image">
+								<width>40</width>
+								<height>40</height>
+								<texture border="8">special://skin/extras/flix-pill-bg.png</texture>
+							</control>
+							<control type="label">
+								<width>40</width>
+								<height>40</height>
+								<align>center</align>
+								<aligny>center</aligny>
+								<font>font_flag</font>
+								<label>[B]15[/B]</label>
+							</control>
+						</control>
+						<control type="group">
+							<width>40</width>
+							<height>40</height>
+							<control type="image">
+								<width>40</width>
+								<height>40</height>
+								<texture border="8">special://skin/extras/flix-pill-bg.png</texture>
+							</control>
+							<control type="label">
+								<width>40</width>
+								<height>40</height>
+								<align>center</align>
+								<aligny>center</aligny>
+								<font>font_flag</font>
+								<label>[B]18[/B]</label>
+							</control>
+						</control>
+					</control>
+					<control type="grouplist">
+						<left>508</left>
+						<top>13</top>
+						<width>280</width>
+						<height>40</height>
+						<orientation>horizontal</orientation>
+						<itemgap>8</itemgap>
+						<visible>String.IsEqual(Skin.String(Kodiflix.AgeRatingStyle),New)</visible>
+						<control type="image">
+							<width>40</width>
+							<height>40</height>
+							<aspectratio align="center" aligny="center">keep</aspectratio>
+							<texture>special://skin/extras/AgeRatingIcons/UK U.png</texture>
+						</control>
+						<control type="image">
+							<width>40</width>
+							<height>40</height>
+							<aspectratio align="center" aligny="center">keep</aspectratio>
+							<texture>special://skin/extras/AgeRatingIcons/UK PG.png</texture>
+						</control>
+						<control type="image">
+							<width>40</width>
+							<height>40</height>
+							<aspectratio align="center" aligny="center">keep</aspectratio>
+							<texture>special://skin/extras/AgeRatingIcons/UK 12.png</texture>
+						</control>
+						<control type="image">
+							<width>40</width>
+							<height>40</height>
+							<aspectratio align="center" aligny="center">keep</aspectratio>
+							<texture>special://skin/extras/AgeRatingIcons/UK 12A.png</texture>
+						</control>
+						<control type="image">
+							<width>40</width>
+							<height>40</height>
+							<aspectratio align="center" aligny="center">keep</aspectratio>
+							<texture>special://skin/extras/AgeRatingIcons/UK 15.png</texture>
+						</control>
+						<control type="image">
+							<width>40</width>
+							<height>40</height>
+							<aspectratio align="center" aligny="center">keep</aspectratio>
+							<texture>special://skin/extras/AgeRatingIcons/UK 18.png</texture>
+						</control>
+					</control>
+					<control type="grouplist">
+						<left>508</left>
+						<top>0</top>
+						<width>280</width>
+						<height>66</height>
+						<orientation>horizontal</orientation>
+						<itemgap>8</itemgap>
+						<visible>String.IsEqual(Skin.String(Kodiflix.AgeRatingStyle),Legacy)</visible>
+						
+						
+						
+						
+						
+						
+					<control type="group"><width>40</width><height>66</height><control type="image"><left>-18</left><top>4</top><width>76</width><height>57</height><aspectratio align="center" aligny="center">keep</aspectratio><texture>special://skin/extras/AgeRatingIcons/bbfc_u_certificate_uk.png</texture></control></control><control type="group"><width>40</width><height>66</height><control type="image"><left>-18</left><top>4</top><width>76</width><height>57</height><aspectratio align="center" aligny="center">keep</aspectratio><texture>special://skin/extras/AgeRatingIcons/bbfc_pg_certificate_uk.png</texture></control></control><control type="group"><width>40</width><height>66</height><control type="image"><left>-27</left><top>0</top><width>95</width><height>65</height><aspectratio align="center" aligny="center">keep</aspectratio><texture>special://skin/extras/AgeRatingIcons/bbfc_12_certificate_uk.png</texture></control></control><control type="group"><width>40</width><height>66</height><control type="image"><left>-27</left><top>0</top><width>95</width><height>65</height><aspectratio align="center" aligny="center">keep</aspectratio><texture>special://skin/extras/AgeRatingIcons/bbfc_12a_certificate_uk.png</texture></control></control><control type="group"><width>40</width><height>66</height><control type="image"><left>-27</left><top>0</top><width>95</width><height>65</height><aspectratio align="center" aligny="center">keep</aspectratio><texture>special://skin/extras/AgeRatingIcons/bbfc_15_certificate_uk.png</texture></control></control><control type="group"><width>40</width><height>66</height><control type="image"><left>-27</left><top>0</top><width>95</width><height>65</height><aspectratio align="center" aligny="center">keep</aspectratio><texture>special://skin/extras/AgeRatingIcons/bbfc_18_certificate_uk.png</texture></control></control></control>
+				</control>
+			</control>
+		</control>
+	</controls>
+</window>
+
+

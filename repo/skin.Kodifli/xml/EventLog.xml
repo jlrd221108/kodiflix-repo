@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">50</defaultcontrol>
+	<backgroundcolor>background</backgroundcolor>
+	<views>50</views>
+	<controls>
+		<include>DefaultBackground</include>
+		<control type="image">
+			<visible>Skin.HasSetting(KodiflixSettingsPopupStyle)</visible>
+			<depth>DepthBackground</depth>
+			<include>FullScreenDimensions</include>
+			<aspectratio>scale</aspectratio>
+			<texture>$VAR[KodiflixSettingsBackgroundVar]</texture>
+		</control>
+		<control type="group">
+			<visible>Skin.HasSetting(KodiflixSettingsPopupStyle)</visible>
+			<control type="image">
+				<left>60</left>
+				<top>180</top>
+				<width>1800</width>
+				<height>720</height>
+				<texture border="32" colordiffuse="700F1415">kodiflix/settings-panel-rounded.png</texture>
+			</control>
+			<control type="image">
+				<left>570</left>
+				<top>225</top>
+				<width>1</width>
+				<height>630</height>
+				<texture colordiffuse="70FFFFFF">colors/white.png</texture>
+			</control>
+		</control>
+		<control type="group">
+			<animation effect="fade" start="100" end="0" time="200" tween="sine" condition="$EXP[infodialog_active]">Conditional</animation>
+			<control type="group">
+				<visible>Control.IsVisible(50)</visible>
+				<include condition="!Skin.HasSetting(KodiflixSettingsPopupStyle)">OpenClose_Right</include>
+				<include>Kodiflix_SettingsTextFade</include>
+				<animation effect="slide" end="70,125" time="0" condition="Skin.HasSetting(KodiflixSettingsPopupStyle)">Conditional</animation>
+				<control type="fixedlist" id="50">
+					<left>490</left>
+					<top>list_top_offset</top>
+					<right>150</right>
+					<bottom>225</bottom>
+					<onleft>9000</onleft>
+					<onright>noop</onright>
+					<onup>50</onup>
+					<movement>2</movement>
+					<focusposition>0</focusposition>
+					<ondown>50</ondown>
+					<viewtype label="535">list</viewtype>
+					<pagecontrol>60</pagecontrol>
+					<scrolltime tween="cubic" easing="out">500</scrolltime>
+					<itemlayout height="150">
+						<control type="image">
+							<left>30</left>
+							<top>22</top>
+							<width>105</width>
+							<height>105</height>
+							<texture fallback="DefaultAddon.png">$INFO[Listitem.Icon]</texture>
+							<aspectratio>scale</aspectratio>
+							<bordertexture colordiffuse="border_alpha">colors/black.png</bordertexture>
+							<bordersize>4</bordersize>
+						</control>
+						<control type="label">
+							<left>165</left>
+							<right>470</right>
+							<top>31</top>
+							<height>35</height>
+							<aligny>center</aligny>
+							<font>font37</font>
+							<label>$INFO[ListItem.Label]</label>
+						</control>
+						<control type="textbox">
+							<left>165</left>
+							<top>70</top>
+							<right>45</right>
+							<height>80</height>
+							<aligny>top</aligny>
+							<textcolor>grey</textcolor>
+							<label>$INFO[ListItem.Property(Event.Description)]</label>
+						</control>
+						<control type="label">
+							<right>45</right>
+							<width>420</width>
+							<top>27</top>
+							<height>35</height>
+							<align>right</align>
+							<aligny>center</aligny>
+							<label>$INFO[ListItem.Label2]</label>
+						</control>
+					</itemlayout>
+					<focusedlayout height="150">
+						<control type="image">
+							<left>0</left>
+							<top>5</top>
+							<right>0</right>
+							<height>140</height>
+							<texture border="24" colordiffuse="70FFFFFF">kodiflix/settings-panel-rounded.png</texture>
+							<visible>Control.HasFocus(50) + !Skin.HasSetting(KodiflixSettingsSquareFocus)</visible>
+						</control>
+<control type="image">
+							<left>0</left>
+							<top>5</top>
+							<right>0</right>
+							<height>140</height>
+							<texture border="24" colordiffuse="70FFFFFF">kodiflix/settings-panel-square.png</texture>
+							<visible>Control.HasFocus(50) + Skin.HasSetting(KodiflixSettingsSquareFocus)</visible>
+						</control>
+						<control type="image">
+							<left>30</left>
+							<top>22</top>
+							<width>105</width>
+							<height>105</height>
+							<texture fallback="DefaultAddon.png">$INFO[Listitem.Icon]</texture>
+							<aspectratio>scale</aspectratio>
+							<bordertexture colordiffuse="border_alpha">colors/black.png</bordertexture>
+							<bordersize>4</bordersize>
+						</control>
+						<control type="label">
+							<left>165</left>
+							<right>470</right>
+							<top>31</top>
+							<height>35</height>
+							<aligny>center</aligny>
+							<font>font37</font>
+							<label>$INFO[ListItem.Label]</label>
+						</control>
+						<control type="textbox">
+							<left>165</left>
+							<top>70</top>
+							<right>45</right>
+							<height>80</height>
+							<aligny>top</aligny>
+							<label>$INFO[ListItem.Property(Event.Description)]</label>
+						</control>
+						<control type="label">
+							<right>45</right>
+							<width>420</width>
+							<top>27</top>
+							<height>35</height>
+							<align>right</align>
+							<aligny>center</aligny>
+							<label>$INFO[ListItem.Label2]</label>
+						</control>
+					</focusedlayout>
+				</control>
+			</control>
+			<control type="group">
+				<depth>DepthContentPanel</depth>
+				<include condition="!Skin.HasSetting(KodiflixSettingsPopupStyle)">OpenClose_Left</include>
+				<animation effect="slide" end="70,95" time="0" condition="Skin.HasSetting(KodiflixSettingsPopupStyle)">Conditional</animation>
+				<include>Kodiflix_SettingsTextFade</include>
+				<include content="ContentPanel" condition="!Skin.HasSetting(KodiflixSettingsPopupStyle)">
+					<param name="width" value="550" />
+				</include>
+				<control type="grouplist" id="9000">
+					<orientation>vertical</orientation>
+					<itemgap>-8.5</itemgap>
+					<left>0</left>
+					<top>120</top>
+					<onup>9000</onup>
+					<ondown>9000</ondown>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<usecontrolcoords>true</usecontrolcoords>
+					<width>490</width>
+					<control type="togglebutton" id="4">
+						<height>110</height>
+						<aligny>top</aligny>
+						<textoffsetx>40</textoffsetx>
+						<texturenofocus />
+						<include condition="Skin.HasSetting(KodiflixSettingsSquareFocus)">KodiflixSettingsSquareTextureFocus</include>
+				<include condition="!Skin.HasSetting(KodiflixSettingsSquareFocus)">KodiflixSettingsRoundedTextureFocus</include>
+						<alttexturenofocus></alttexturenofocus>
+						<include condition="Skin.HasSetting(KodiflixSettingsSquareFocus)">KodiflixSettingsSquareAltTextureFocus</include>
+				<include condition="!Skin.HasSetting(KodiflixSettingsSquareFocus)">KodiflixSettingsRoundedAltTextureFocus</include>
+						<textoffsety>35</textoffsety>
+						<label>$LOCALIZE[31032]: $LOCALIZE[584]</label>
+						<altlabel>$LOCALIZE[31032]: $LOCALIZE[585]</altlabel>
+					</control>
+					<include content="PlaylistWindowButton">
+						<param name="control_id" value="21" />
+						<param name="onclick" value="" />
+						<param name="label" value="" />
+					</include>
+					<control type="radiobutton" id="22">
+						<height>110</height>
+						<aligny>top</aligny>
+						<texturenofocus />
+						<include condition="Skin.HasSetting(KodiflixSettingsSquareFocus)">KodiflixSettingsSquareTextureFocus</include>
+				<include condition="!Skin.HasSetting(KodiflixSettingsSquareFocus)">KodiflixSettingsRoundedTextureFocus</include>
+						<textoffsetx>40</textoffsetx>
+						<textoffsety>35</textoffsety>
+					</control>
+					<include content="PlaylistWindowButton">
+						<param name="control_id" value="20" />
+						<param name="onclick" value="" />
+						<param name="label" value="$LOCALIZE[192]" />
+					</include>
+					<include content="PlaylistWindowButton">
+						<param name="control_id" value="501" />
+						<param name="onclick" value="ActivateWindow(systemsettings,logging)" />
+						<param name="label" value="$LOCALIZE[5]" />
+					</include>
+				</control>
+				<control type="image">
+					<visible>!Skin.HasSetting(KodiflixSettingsPopupStyle)</visible>
+					<left>70</left>
+					<bottom>90</bottom>
+					<width>300</width>
+					<height>300</height>
+					<fadetime>300</fadetime>
+					<aspectratio aligny="bottom">keep</aspectratio>
+					<texture fallback="DefaultAddon.png">$INFO[ListItem.Icon]</texture>
+					<bordertexture border="21" infill="false">overlays/shadow.png</bordertexture>
+					<bordersize>20</bordersize>
+				</control>
+			</control>
+			<control type="scrollbar" id="60">
+				<enable>!Skin.HasSetting(KodiflixSettingsPopupStyle)</enable>
+				<right>150</right>
+				<top>list_top_offset</top>
+				<width>12</width>
+				<bottom>225</bottom>
+				<onleft>50</onleft>
+				<onright>9000</onright>
+				<orientation>vertical</orientation>
+				<animation effect="slide" end="0,125" time="0" condition="Skin.HasSetting(KodiflixSettingsPopupStyle)">Conditional</animation>
+				<animation effect="slide" end="6,0" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(60)">conditional</animation>
+				<visible>Control.IsVisible(50) + !Skin.HasSetting(KodiflixSettingsPopupStyle)</visible>
+			</control>
+		</control>
+		<include content="TopBar" condition="!Skin.HasSetting(KodiflixSettingsPopupStyle)">
+			<param name="breadcrumbs_label" value="$LOCALIZE[31067]" />
+		</include>
+		<include condition="!Skin.HasSetting(KodiflixSettingsPopupStyle)">BottomBar</include>
+	</controls>
+</window>
