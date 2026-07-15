@@ -1,3 +1,0 @@
-Kodiflix Repository
-
-Repository metadata for distributing Kodiflix add-ons.
