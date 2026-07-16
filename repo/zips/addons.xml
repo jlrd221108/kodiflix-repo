@@ -1,5 +1,6 @@
-<?xml version='1.0' encoding='utf-8'?>
-<addons><addon id="repository.kodiflix" name="Kodiflix Repository" version="1.0.0" provider-name="Jack Davison">
+<?xml version="1.0" encoding="UTF-8"?>
+<addons>
+<addon id="repository.kodiflix" name="Kodiflix Repository" version="1.0.0" provider-name="Jack Davison">
 	<extension point="xbmc.addon.repository" name="Kodiflix Repository">
 		<dir>
 			<info compressed="false">https://raw.githubusercontent.com/jlrd221108/kodiflix-repo/main/repo/zips/addons.xml</info>
@@ -12,28 +13,32 @@
 		<description lang="en_GB">Repository for the Kodiflix skin and helper add-on.</description>
 		<platform>all</platform>
 	</extension>
-</addon><addon id="script.kodiflix.helper" name="Kodiflix Helper" version="1.0.5" provider-name="Jack Davison">
+</addon>
+
+<addon id="script.kodiflix.helper" name="Kodiflix Helper" version="1.0.6" provider-name="Jack Davison">
 	<requires>
-		<import addon="xbmc.python" version="3.0.0" />
+		<import addon="xbmc.python" version="3.0.0"/>
 	</requires>
-	<extension point="xbmc.python.library" library="resources/lib/default.py" />
-	<extension point="xbmc.service" library="resources/lib/service.py" start="startup" />
+	<extension point="xbmc.python.library" library="resources/lib/default.py"/>
+	<extension point="xbmc.service" library="resources/lib/service.py" start="startup"/>
 	<extension point="xbmc.addon.metadata">
 		<summary lang="en_GB">Adaptive artwork processing for Kodiflix</summary>
 		<description lang="en_GB">Generates cached adaptive blurred backgrounds from artwork exposed by the Kodiflix skin.</description>
 		<platform>all</platform>
 		<license>GPL-2.0-only</license>
 	</extension>
-</addon><addon id="skin.Kodifli" version="1.0.4" name="Kodiflix" provider-name="Jack Davison">
+</addon>
+
+<addon id="skin.Kodifli" version="1.0.5" name="Kodiflix" provider-name="Jack Davison">
 	<requires>
-		<import addon="xbmc.gui" version="5.17.0" />
-		<import addon="xbmc.python" version="3.0.0" />
-		<import addon="script.kodiflix.helper" version="1.0.5" />
+		<import addon="xbmc.gui" version="5.17.0"/>
+		<import addon="xbmc.python" version="3.0.0"/>
+		<import addon="script.kodiflix.helper" version="1.0.6"/>
 	</requires>
 	<extension point="xbmc.gui.skin" debugging="false">
-		<res width="1920" height="1080" aspect="16:9" default="true" folder="xml" />
+		<res width="1920" height="1080" aspect="16:9" default="true" folder="xml"/>
 	</extension>
-	<extension point="xbmc.service" library="resources/lib/setstats_service.py" start="startup" />
+	<extension point="xbmc.service" library="resources/lib/setstats_service.py" start="startup"/>
 	<extension point="xbmc.addon.metadata">
 		<platform>all</platform>
 		<license>CC BY-SA 4.0, GNU GENERAL PUBLIC LICENSE Version 2.0</license>
@@ -52,4 +57,5 @@
 		<summary lang="en_GB">A focused cinematic Kodi skin for local movie and TV libraries.</summary>
 		<description lang="en_GB">Kodiflix presents local movies and TV shows with artwork-led Flix views, adaptive blurred backgrounds, configurable metadata, and a streamlined home experience.</description>
 	</extension>
-</addon></addons>
+</addon>
+</addons>
